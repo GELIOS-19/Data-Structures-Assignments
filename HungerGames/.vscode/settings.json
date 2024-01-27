@@ -1,0 +1,12 @@
+{
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": ["lib/**/*.jar"],
+  "[java]": {
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "cSpell.words": ["Kravcenko", "Kurjanovics", "Maksims", "Panem", "Roni"],
+  "java.format.settings.url": ".vscode/java-formatter.xml",
+  "docify.commentService.docstringFormat": "JavaDoc"
+}
