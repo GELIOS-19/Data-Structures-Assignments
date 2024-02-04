@@ -17,7 +17,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.System;
 import java.util.Locale;
 
-
 /**
  *  This class provides methods for printing strings and numbers to standard
  * output. <p> <b>Getting started.</b> To use this class, you must have {@code
