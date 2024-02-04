@@ -22,24 +22,10 @@ public class Driver {
         songLibrary = new PlaylistLibrary();
 
         String[] methods = {
-<<<<<<< HEAD
             "addPlaylist", "removePlaylist", "loadAllPlaylists",
             "insertSong", "removeSong", "reversePlaylist",
             "mergePlaylists", "shufflePlaylist", "sortPlaylist",
             "playPlaylist", "printLibrary"
-=======
-            "addPlaylist",
-            "removePlaylist",
-            "loadAllPlaylists",
-            "insertSong",
-            "removeSong",
-            "reversePlaylist",
-            "mergePlaylists",
-            "shufflePlaylist",
-            "sortPlaylist",
-            "playPlaylist",
-            "printLibrary"
->>>>>>> parent of d02b300 (Formatted Code)
         };
         String[] options = {"Test another method", "Quit"};
         int controlChoice = 1;

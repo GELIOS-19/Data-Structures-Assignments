@@ -17,12 +17,7 @@ public final class GridLocation {
 
     @Override
     public boolean equals(Object rhs) {
-<<<<<<< HEAD
         if (!(rhs instanceof GridLocation)) return false;
-=======
-        if (!(rhs instanceof GridLocation))
-            return false;
->>>>>>> parent of d02b300 (Formatted Code)
 
         var other = (GridLocation) rhs;
         return row == other.row && col == other.col;
