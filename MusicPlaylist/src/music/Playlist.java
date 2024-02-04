@@ -9,29 +9,38 @@ package music;
  * @author Vian Miranda
  */
 public class Playlist {
-  private SongNode
-      last;         // reference to the last node in the Circular Linked List
-  private int size; // the number of SongNodes (songs) in the list
+    private SongNode last; // reference to the last node in the Circular Linked List
+    private int size; // the number of SongNodes (songs) in the list
 
-  /*
-   * Constructor
-   */
-  public Playlist(SongNode last, int size) {
-    this.last = last;
-    this.size = size;
-  }
+    /*
+     * Constructor
+     */
+    public Playlist(SongNode last, int size) {
+        this.last = last;
+        this.size = size;
+    }
 
-  /*
-   * Default constructor initializes the size to 0
-   */
-  public Playlist() { this(null, 0); }
+    /*
+     * Default constructor initializes the size to 0
+     */
+    public Playlist() {
+        this(null, 0);
+    }
 
-  /* Getter and setter methods */
-  public SongNode getLast() { return last; }
+    /* Getter and setter methods */
+    public SongNode getLast() {
+        return last;
+    }
 
-  public void setLast(SongNode last) { this.last = last; }
+    public void setLast(SongNode last) {
+        this.last = last;
+    }
 
-  public int getSize() { return size; }
+    public int getSize() {
+        return size;
+    }
 
-  public void setSize(int size) { this.size = size; }
+    public void setSize(int size) {
+        this.size = size;
+    }
 }
