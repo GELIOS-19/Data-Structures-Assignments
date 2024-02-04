@@ -47,8 +47,7 @@ public class RUHungry {
     /*
      * Default constructor
      */
-    public RUHungry()
-    {
+    public RUHungry() {
         categoryVar = null;
         menuVar = null;
         stockVar = null;
@@ -62,38 +61,31 @@ public class RUHungry {
     /*
      * Get/Set methods
      */
-    public MenuNode[] getMenu()
-    {
+    public MenuNode[] getMenu() {
         return menuVar;
     }
 
-    public String[] getCategoryArray()
-    {
+    public String[] getCategoryArray() {
         return categoryVar;
     }
 
-    public StockNode[] getStockVar()
-    {
+    public StockNode[] getStockVar() {
         return stockVar;
     }
 
-    public TransactionNode getFrontTransactionNode()
-    {
+    public TransactionNode getFrontTransactionNode() {
         return transactionVar;
     }
 
-    public TransactionNode resetFrontNode()
-    {
+    public TransactionNode resetFrontNode() {
         return transactionVar = null;
     } // method to reset the transactions for a new day
 
-    public Queue<People> getLeftQueueVar()
-    {
+    public Queue<People> getLeftQueueVar() {
         return leftQueueVar;
     }
 
-    public int[][] getTablesInfo()
-    {
+    public int[][] getTablesInfo() {
         return tablesInfo;
     }
 
@@ -124,8 +116,7 @@ public class RUHungry {
      *
      * @param inputFile - use menu.in file which contains all the dishes
      */
-    public void menu(String inputFile)
-    {
+    public void menu(String inputFile) {
         StdIn.setFile(inputFile);
 
         int numCategories = Integer.parseInt(StdIn.readLine());
@@ -171,8 +162,7 @@ public class RUHungry {
      * @param dishName - the name of the dish
      * @return the dish object corresponding to searched dish, null if dishName is not found.
      */
-    public MenuNode findDish(String dishName)
-    {
+    public MenuNode findDish(String dishName) {
         MenuNode menuNode = null;
 
         // Search all categories since we don't know which category dishName is at
@@ -200,8 +190,7 @@ public class RUHungry {
      * @param category - the category name
      * @return index of category in categoryVar
      */
-    public int findCategoryIndex(String category)
-    {
+    public int findCategoryIndex(String category) {
         int index = 0;
         for (int i = 0; i < categoryVar.length; i++) {
             if (category.equalsIgnoreCase(categoryVar[i])) {
@@ -231,8 +220,7 @@ public class RUHungry {
      *
      * @param newNode - StockNode that needs to be inserted into StockVar
      */
-    public void addStockNode(StockNode newNode)
-    {
+    public void addStockNode(StockNode newNode) {
         int ingredientID = newNode.getIngredient().getID();
         int itemHash = this.hash(ingredientID);
 
@@ -241,8 +229,7 @@ public class RUHungry {
         stockVar[itemHash] = newNode;
     }
 
-    private int hash(int ingredientID)
-    {
+    private int hash(int ingredientID) {
         return ingredientID % stockVarSize;
     }
 
@@ -257,8 +244,7 @@ public class RUHungry {
      *
      * @param ingredientName - name of the ingredient
      */
-    public void deleteStockNode(String ingredientName)
-    {
+    public void deleteStockNode(String ingredientName) {
         for (int i = 0; i < this.stockVarSize; i++) {
             StockNode ptr = this.stockVar[i];
             StockNode prev = null;
@@ -289,8 +275,7 @@ public class RUHungry {
      * @param ingredientID - the ID of the ingredient
      * @return the StockNode corresponding to the ingredientID, null otherwise
      */
-    public StockNode findStockNode(int ingredientID)
-    {
+    public StockNode findStockNode(int ingredientID) {
         int itemHash = this.hash(ingredientID);
         StockNode front = this.stockVar[itemHash];
 
@@ -314,8 +299,7 @@ public class RUHungry {
      * @param ingredientName - the name of the ingredient
      * @return the specific ingredient StockNode, null otherwise
      */
-    public StockNode findStockNode(String ingredientName)
-    {
+    public StockNode findStockNode(String ingredientName) {
         StockNode stockNode = null;
 
         for (int index = 0; index < stockVar.length; index++) {
@@ -347,8 +331,7 @@ public class RUHungry {
      * @param ingredientID - the id of the ingredient
      * @param stockAmountToAdd - the amount to add to the current stock amount
      */
-    public void updateStock(String ingredientName, int ingredientID, int stockAmountToAdd)
-    {
+    public void updateStock(String ingredientName, int ingredientID, int stockAmountToAdd) {
         StockNode stockNode = null;
         if (ingredientName != null) {
             stockNode = this.findStockNode(ingredientName);
@@ -375,8 +358,7 @@ public class RUHungry {
      * <p>2. Calculate the profit of each dish by getting the totalPrice of ingredients and
      * subtracting from the price of the dish itself.
      */
-    public void updatePriceAndProfit()
-    {
+    public void updatePriceAndProfit() {
         for (int i = 0; i < this.menuVar.length; i++) {
             MenuNode front = this.menuVar[i];
 
@@ -424,8 +406,7 @@ public class RUHungry {
      *
      * @param inputFile - the input file with the ingredients and all their information (stock.in)
      */
-    public void createStockHashTable(String inputFile)
-    {
+    public void createStockHashTable(String inputFile) {
         StdIn.setFile(inputFile);
 
         this.stockVarSize = Integer.parseInt(StdIn.readLine());
@@ -436,7 +417,8 @@ public class RUHungry {
             String[] secondLine = StdIn.readLine().split(" ");
 
             int id = Integer.parseInt(firstLine[0]);
-            String name = String.join(" ", Arrays.copyOfRange(firstLine, 1, firstLine.length)).trim();
+            String name =
+                    String.join(" ", Arrays.copyOfRange(firstLine, 1, firstLine.length)).trim();
             double price = Double.parseDouble(secondLine[0]);
             int amount = Integer.parseInt(secondLine[1]);
 
@@ -460,8 +442,7 @@ public class RUHungry {
      *
      * @param data - TransactionData node to be added to transactionVar
      */
-    public void addTransactionNode(TransactionData data)
-    { // method adds new transactionNode
+    public void addTransactionNode(TransactionData data) { // method adds new transactionNode
         // to the end of LL
         TransactionNode transactionNode = new TransactionNode(data, null);
 
@@ -494,8 +475,7 @@ public class RUHungry {
      * @param numberOfDishes - int of how many of that dish is being ordered
      * @return boolean
      */
-    public boolean checkDishAvailability(String dishName, int numberOfDishes)
-    {
+    public boolean checkDishAvailability(String dishName, int numberOfDishes) {
         MenuNode menuNode = this.findDish(dishName);
         Dish dish = menuNode.getDish();
 
@@ -537,16 +517,16 @@ public class RUHungry {
      * @param dishName - String of dish that's been ordered
      * @param quantity - int of how many of that dish has been ordered
      */
-    public void order(String dishName, int quantity)
-    {
+    public void order(String dishName, int quantity) {
         MenuNode menuNode = this.findDish(dishName);
         Dish dish = menuNode.getDish();
 
         this.orderVisitedMenuNodes.add(menuNode);
 
         if (this.checkDishAvailability(dishName, quantity)) {
-            TransactionData transaction = new TransactionData(
-                "order", dishName, quantity, dish.getProfit() * quantity, true);
+            TransactionData transaction =
+                    new TransactionData(
+                            "order", dishName, quantity, dish.getProfit() * quantity, true);
             this.addTransactionNode(transaction);
 
             for (int stockID : dish.getStockID()) {
@@ -555,7 +535,8 @@ public class RUHungry {
 
             this.orderVisitedMenuNodes.clear();
         } else {
-            TransactionData transaction = new TransactionData("order", dishName, quantity, 0, false);
+            TransactionData transaction =
+                    new TransactionData("order", dishName, quantity, 0, false);
             this.addTransactionNode(transaction);
 
             MenuNode nextMenuNode = menuNode.getNextMenuNode();
@@ -585,8 +566,7 @@ public class RUHungry {
      *
      * @return profit - double value of the total profit for the day
      */
-    public double profit()
-    {
+    public double profit() {
         double profit = 0d;
 
         TransactionNode ptr = this.transactionVar;
@@ -609,19 +589,20 @@ public class RUHungry {
      * @param quantity - int of how many of that ingredient has been ordered
      * @return void
      */
-    public void donation(String ingredientName, int quantity)
-    {
+    public void donation(String ingredientName, int quantity) {
         StockNode stockNode = this.findStockNode(ingredientName);
         Ingredient ingredient = stockNode.getIngredient();
         double profit = this.profit();
 
         if (profit > 50d && ingredient.getStockLevel() >= quantity) {
-            TransactionData transaction = new TransactionData("donation", ingredientName, quantity, 0, true);
+            TransactionData transaction =
+                    new TransactionData("donation", ingredientName, quantity, 0, true);
             this.addTransactionNode(transaction);
 
             this.updateStock(null, ingredient.getID(), -quantity);
         } else {
-            TransactionData transaction = new TransactionData("donation", ingredientName, quantity, 0, false);
+            TransactionData transaction =
+                    new TransactionData("donation", ingredientName, quantity, 0, false);
             this.addTransactionNode(transaction);
         }
     }
@@ -638,8 +619,7 @@ public class RUHungry {
      * @param ingredientName - ingredient that's been requested
      * @param quantity - how many of that ingredient needs to be ordered
      */
-    public void restock(String ingredientName, int quantity)
-    {
+    public void restock(String ingredientName, int quantity) {
         StockNode stockNode = this.findStockNode(ingredientName);
         Ingredient ingredient = stockNode.getIngredient();
         double profit = this.profit();
@@ -647,12 +627,14 @@ public class RUHungry {
         double cost = ingredient.getCost() * quantity;
 
         if (cost <= profit) {
-            TransactionData transaction = new TransactionData("restock", ingredientName, quantity, -cost, true);
+            TransactionData transaction =
+                    new TransactionData("restock", ingredientName, quantity, -cost, true);
             this.addTransactionNode(transaction);
 
             this.updateStock(null, ingredient.getID(), quantity);
         } else {
-            TransactionData transaction = new TransactionData("restock", ingredientName, quantity, 0, false);
+            TransactionData transaction =
+                    new TransactionData("restock", ingredientName, quantity, 0, false);
             this.addTransactionNode(transaction);
         }
     }
@@ -673,8 +655,7 @@ public class RUHungry {
      * @param inputFile - tables1.in (contains all the tables in the RUHungry restaurant)
      * @return void (aka nothing)
      */
-    public void createTables(String inputFile)
-    {
+    public void createTables(String inputFile) {
         StdIn.setFile(inputFile);
         int numberOfTables = StdIn.readInt();
         tablesInfo = new int[2][numberOfTables];
@@ -710,8 +691,7 @@ public class RUHungry {
      * @param waitingQueue - queue containing people waiting to be seated (each element in queue is
      *     a People <-- you are given this class!)
      */
-    public void seatAllGuests(Queue<People> waitingQueue)
-    {
+    public void seatAllGuests(Queue<People> waitingQueue) {
 
         // WRITE YOUR CODE HERE
     }
