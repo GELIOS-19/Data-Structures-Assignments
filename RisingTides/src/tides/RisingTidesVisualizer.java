@@ -13,14 +13,22 @@ public class RisingTidesVisualizer extends JPanel {
 
     /* Color of flooded cells. */
     private static final Color UNDERWATER_COLOR = new Color(0, 49, 83); // Prussian
+<<<<<<< HEAD
     // blue
     /* Background color */
     private static final Color BACKGROUND_COLOR = new Color(102, 2, 60); // Tyrian
     // purple
+=======
+                                                                        // blue
+    /* Background color */
+    private static final Color BACKGROUND_COLOR = new Color(102, 2, 60); // Tyrian
+                                                                         // purple
+>>>>>>> parent of d02b300 (Formatted Code)
     /*
      * The actual colors to use to draw the map, annotated with their threshold
      * values.
      */
+<<<<<<< HEAD
     private static final RGBPoint[] COLORS =
             new RGBPoint[] {
                 new RGBPoint(0, 102, 0, 0.0), // Pakistan green
@@ -30,6 +38,16 @@ public class RisingTidesVisualizer extends JPanel {
                 new RGBPoint(166, 60, 20, 1.01), // Sienna. The 1.01 here is to
                 // ensure we cover rounding errors.
             };
+=======
+    private static final RGBPoint[] COLORS = new RGBPoint[] {
+            new RGBPoint(0, 102, 0, 0.0), // Pakistan green
+            new RGBPoint(154, 205, 50, 0.1), // Chartreuse
+            new RGBPoint(251, 236, 93, 0.25), // Maize
+            new RGBPoint(212, 175, 55, 0.4), // Metallic gold
+            new RGBPoint(166, 60, 20, 1.01), // Sienna. The 1.01 here is to
+                                             // ensure we cover rounding errors.
+    };
+>>>>>>> parent of d02b300 (Formatted Code)
     /* Initial dimensions. */
     private static final int DEFAULT_WIDTH = 740;
     private static final int DEFAULT_HEIGHT = 600;
@@ -44,6 +62,7 @@ public class RisingTidesVisualizer extends JPanel {
         setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
     }
 
+<<<<<<< HEAD
     private static int interpolate(int value, int min, int max, int newMin, int newMax) {
         return (int) interpolate(value + 0.0, min + 0.0, max + 1.0, newMin + 0.0, newMax);
     }
@@ -51,6 +70,18 @@ public class RisingTidesVisualizer extends JPanel {
     private static double interpolate(
             double value, double min, double max, double newMin, double newMax) {
         return (value - min) / (max - min + 0.000001) * (newMax - newMin) + newMin;
+=======
+    private static int interpolate(int value, int min, int max, int newMin,
+            int newMax) {
+        return (int) interpolate(value + 0.0, min + 0.0, max + 1.0,
+                newMin + 0.0, newMax);
+    }
+
+    private static double interpolate(double value, double min, double max,
+            double newMin, double newMax) {
+        return (value - min) / (max - min + 0.000001) * (newMax - newMin)
+                + newMin;
+>>>>>>> parent of d02b300 (Formatted Code)
     }
 
     public void setTerrain(double[][] terrain) {
@@ -66,8 +97,15 @@ public class RisingTidesVisualizer extends JPanel {
 
         for (int row = 0; row < terrain.length; row++) {
             for (int col = 0; col < terrain[0].length; col++) {
+<<<<<<< HEAD
                 if (terrain[row][col] < minHeight) minHeight = terrain[row][col];
                 if (terrain[row][col] > maxHeight) maxHeight = terrain[row][col];
+=======
+                if (terrain[row][col] < minHeight)
+                    minHeight = terrain[row][col];
+                if (terrain[row][col] > maxHeight)
+                    maxHeight = terrain[row][col];
+>>>>>>> parent of d02b300 (Formatted Code)
             }
         }
     }
@@ -78,12 +116,22 @@ public class RisingTidesVisualizer extends JPanel {
 
     private Color colorFor(int row, int col) {
         /* Water always draws blue. */
+<<<<<<< HEAD
         if (flooded[row][col]) return UNDERWATER_COLOR;
+=======
+        if (flooded[row][col])
+            return UNDERWATER_COLOR;
+>>>>>>> parent of d02b300 (Formatted Code)
 
         /* Everything else gets a nice shade based on height. */
 
         /* Map everything to a value in the interaval [0, 1) */
+<<<<<<< HEAD
         double alpha = interpolate(terrain[row][col], minHeight, maxHeight, 0, 1);
+=======
+        double alpha = interpolate(terrain[row][col], minHeight, maxHeight, 0,
+                1);
+>>>>>>> parent of d02b300 (Formatted Code)
 
         /* Figure out which points we're between. */
         for (int i = 1; i < COLORS.length; i++) {
@@ -94,17 +142,31 @@ public class RisingTidesVisualizer extends JPanel {
                  * "completely at the left end. 1.0 means "completely at the
                  * right end."
                  */
+<<<<<<< HEAD
                 double progress =
                         (alpha - COLORS[i - 1].threshold)
                                 / (COLORS[i].threshold - COLORS[i - 1].threshold);
+=======
+                double progress = (alpha - COLORS[i - 1].threshold)
+                        / (COLORS[i].threshold - COLORS[i - 1].threshold);
+>>>>>>> parent of d02b300 (Formatted Code)
 
                 /*
                  * Interpolate between those color points to get our overall
                  * color.
                  */
+<<<<<<< HEAD
                 int red = (int) interpolate(progress, 0, 1, COLORS[i - 1].red, COLORS[i].red);
                 int green = (int) interpolate(progress, 0, 1, COLORS[i - 1].green, COLORS[i].green);
                 int blue = (int) interpolate(progress, 0, 1, COLORS[i - 1].blue, COLORS[i].blue);
+=======
+                int red = (int) interpolate(progress, 0, 1, COLORS[i - 1].red,
+                        COLORS[i].red);
+                int green = (int) interpolate(progress, 0, 1,
+                        COLORS[i - 1].green, COLORS[i].green);
+                int blue = (int) interpolate(progress, 0, 1, COLORS[i - 1].blue,
+                        COLORS[i].blue);
+>>>>>>> parent of d02b300 (Formatted Code)
 
                 return new Color(red, green, blue);
             }
@@ -120,7 +182,12 @@ public class RisingTidesVisualizer extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         /* Now draw the terrain - if there is anything to draw, that is. */
+<<<<<<< HEAD
         if (terrain == null || flooded == null) return;
+=======
+        if (terrain == null || flooded == null)
+            return;
+>>>>>>> parent of d02b300 (Formatted Code)
 
         /* Compute our aspect ratio. */
         double width = getWidth();
@@ -140,8 +207,15 @@ public class RisingTidesVisualizer extends JPanel {
 
         for (int x = baseX; x < baseX + width; x++) {
             for (int y = baseY; y < baseY + height; y++) {
+<<<<<<< HEAD
                 int col = interpolate(x, baseX, (int) (baseX + width), 0, terrain[0].length);
                 int row = interpolate(y, baseY, (int) (baseY + height), 0, terrain.length);
+=======
+                int col = interpolate(x, baseX, (int) (baseX + width), 0,
+                        terrain[0].length);
+                int row = interpolate(y, baseY, (int) (baseY + height), 0,
+                        terrain.length);
+>>>>>>> parent of d02b300 (Formatted Code)
 
                 g.setColor(colorFor(row, col));
                 g.fillRect(x, y, 1, 1);

@@ -15,11 +15,18 @@ public class RisingTides {
 
     // Instance variables
     private final double[][] terrain; // an array for all the heights for each
+<<<<<<< HEAD
     // cell
     private final GridLocation[] sources; // an array for the sources of water
 
     // on empty terrain
 
+=======
+                                      // cell
+    private final GridLocation[] sources; // an array for the sources of water
+                                          // on empty terrain
+
+>>>>>>> parent of d02b300 (Formatted Code)
     /**
      * DO NOT EDIT! Constructor for RisingTides.
      *
@@ -33,8 +40,13 @@ public class RisingTides {
     /**
      * Find the lowest and highest point of the terrain and output it.
      *
+<<<<<<< HEAD
      * @return double[][], with index 0 and index 1 being the lowest and highest points of the
      *     terrain, respectively
+=======
+     * @return double[][], with index 0 and index 1 being the lowest and highest
+     *         points of the terrain, respectively
+>>>>>>> parent of d02b300 (Formatted Code)
      */
     public double[] elevationExtrema() {
         double min = this.terrain[0][0];
@@ -51,15 +63,27 @@ public class RisingTides {
             }
         }
 
+<<<<<<< HEAD
         return new double[] {min, max};
+=======
+        return new double[] { min, max };
+>>>>>>> parent of d02b300 (Formatted Code)
     }
 
     /**
      * Implement the floodfill algorithm using the provided terrain and sources.
      *
+<<<<<<< HEAD
      * <p>All water originates from the source GridLocation. If the height of the water is greater
      * than that of the neighboring terrain, flood the cells. Repeat iteratively till the
      * neighboring terrain is higher than the water height.
+=======
+     * <p>
+     * All water originates from the source GridLocation. If the height of the
+     * water is greater than that of the neighboring terrain, flood the cells.
+     * Repeat iteratively till the neighboring terrain is higher than the water
+     * height.
+>>>>>>> parent of d02b300 (Formatted Code)
      *
      * @param height of the water
      * @return boolean[][], where flooded cells are true, otherwise false
@@ -68,11 +92,18 @@ public class RisingTides {
         boolean[][] resultingArray = new boolean[terrain.length][terrain[0].length];
         ArrayList<GridLocation> floodedCells = new ArrayList<>();
 
+<<<<<<< HEAD
         final int[][] DIRECTIONS = {
             {-1, 0}, // north
             {1, 0}, // south
             {0, -1}, // west
             {0, 1} // east
+=======
+        final int[][] DIRECTIONS = { { -1, 0 }, // north
+                { 1, 0 }, // south
+                { 0, -1 }, // west
+                { 0, 1 } // east
+>>>>>>> parent of d02b300 (Formatted Code)
         };
 
         for (GridLocation source : this.sources) {
@@ -84,8 +115,13 @@ public class RisingTides {
             GridLocation curr = floodedCells.remove(0);
 
             for (int[] direction : DIRECTIONS) {
+<<<<<<< HEAD
                 GridLocation neighbor =
                         new GridLocation(curr.row + direction[0], curr.col + direction[1]);
+=======
+                GridLocation neighbor = new GridLocation(
+                        curr.row + direction[0], curr.col + direction[1]);
+>>>>>>> parent of d02b300 (Formatted Code)
                 try {
                     if (this.terrain[neighbor.row][neighbor.col] <= height
                             && !resultingArray[neighbor.row][neighbor.col]) {
@@ -105,7 +141,11 @@ public class RisingTides {
      * Checks if a given cell is flooded at a certain water height.
      *
      * @param height of the water
+<<<<<<< HEAD
      * @param cell location
+=======
+     * @param cell   location
+>>>>>>> parent of d02b300 (Formatted Code)
      * @return boolean, true if cell is flooded, otherwise false
      */
     public boolean isFlooded(double height, GridLocation cell) {
@@ -113,6 +153,7 @@ public class RisingTides {
     }
 
     /**
+<<<<<<< HEAD
      * Given the water height and a GridLocation find the difference between the chosen cells height
      * and the water height.
      *
@@ -122,6 +163,18 @@ public class RisingTides {
      *
      * @param height of the water
      * @param cell location
+=======
+     * Given the water height and a GridLocation find the difference between the
+     * chosen cells height and the water height.
+     *
+     * <p>
+     * If the return value is negative, the Driver will display "meters below"
+     * If the return value is positive, the Driver will display "meters above"
+     * The value displayed will be positive.
+     *
+     * @param height of the water
+     * @param cell   location
+>>>>>>> parent of d02b300 (Formatted Code)
      * @return double, representing how high/deep a cell is above/below water
      */
     public double heightAboveWater(double height, GridLocation cell) {
@@ -153,10 +206,19 @@ public class RisingTides {
     /**
      * Given 2 heights, find the difference in land available at each height.
      *
+<<<<<<< HEAD
      * <p>If the return value is negative, the Driver will display "Will gain" If the return value
      * is positive, the Driver will display "Will lose" The value displayed will be positive.
      *
      * @param height of the water
+=======
+     * <p>
+     * If the return value is negative, the Driver will display "Will gain" If
+     * the return value is positive, the Driver will display "Will lose" The
+     * value displayed will be positive.
+     *
+     * @param height    of the water
+>>>>>>> parent of d02b300 (Formatted Code)
      * @param newHeight the future height of the water
      * @return int, representing the amount of land lost or gained
      */
@@ -167,6 +229,7 @@ public class RisingTides {
     /**
      * Count the total number of islands on the flooded terrain.
      *
+<<<<<<< HEAD
      * <p>Parts of the terrain are considered "islands" if they are completely surround by water in
      * all 8-directions. Should there be a direction (ie. left corner) where a certain piece of land
      * is connected to another landmass, this should be considered as one island. A better example
@@ -174,6 +237,18 @@ public class RisingTides {
      * after further inspection it should be realized this is one single island. Only if this
      * connection were to be removed (height of water increased) should these two landmasses be
      * considered two separate islands.
+=======
+     * <p>
+     * Parts of the terrain are considered "islands" if they are completely
+     * surround by water in all 8-directions. Should there be a direction (ie.
+     * left corner) where a certain piece of land is connected to another
+     * landmass, this should be considered as one island. A better example would
+     * be if there were two landmasses connected by one cell. Although seemingly
+     * two islands, after further inspection it should be realized this is one
+     * single island. Only if this connection were to be removed (height of
+     * water increased) should these two landmasses be considered two separate
+     * islands.
+>>>>>>> parent of d02b300 (Formatted Code)
      *
      * @param height of the water
      * @return int, representing the total number of islands
@@ -182,6 +257,7 @@ public class RisingTides {
         int numOfIslands = 0;
 
         boolean[][] flooded = this.floodedRegionsIn(height);
+<<<<<<< HEAD
         WeightedQuickUnionUF uf = new WeightedQuickUnionUF(flooded.length, flooded[0].length);
 
         final int[][] DIRECTIONS = {
@@ -193,6 +269,19 @@ public class RisingTides {
             {1, -1}, // bottom left
             {1, 0}, // bottom middle
             {1, 1} // bottom right
+=======
+        WeightedQuickUnionUF uf = new WeightedQuickUnionUF(flooded.length,
+                flooded[0].length);
+
+        final int[][] DIRECTIONS = { { -1, -1 }, // top left
+                { -1, 0 }, // top middle
+                { -1, 1 }, // top right
+                { 0, -1 }, // middle left
+                { 0, 1 }, // middle right
+                { 1, -1 }, // bottom left
+                { 1, 0 }, // bottom middle
+                { 1, 1 } // bottom right
+>>>>>>> parent of d02b300 (Formatted Code)
         };
 
         for (int row = 0; row < flooded.length; row++) {
@@ -201,12 +290,21 @@ public class RisingTides {
                     GridLocation curr = new GridLocation(row, col);
 
                     for (int[] direction : DIRECTIONS) {
+<<<<<<< HEAD
                         GridLocation neighbor =
                                 new GridLocation(row + direction[0], col + direction[1]);
 
                         try {
                             if (!flooded[neighbor.row][neighbor.col]
                                     && !uf.find(neighbor).equals(uf.find(curr))) {
+=======
+                        GridLocation neighbor = new GridLocation(
+                                row + direction[0], col + direction[1]);
+
+                        try {
+                            if (!flooded[neighbor.row][neighbor.col] && !uf
+                                    .find(neighbor).equals(uf.find(curr))) {
+>>>>>>> parent of d02b300 (Formatted Code)
                                 uf.union(curr, neighbor);
                             }
                         } catch (IndexOutOfBoundsException e) {
@@ -219,8 +317,13 @@ public class RisingTides {
 
         for (int row = 0; row < flooded.length; row++) {
             for (int col = 0; col < flooded[0].length; col++) {
+<<<<<<< HEAD
                 if (!flooded[row][col]
                         && uf.find(new GridLocation(row, col)).equals(new GridLocation(row, col))) {
+=======
+                if (!flooded[row][col] && uf.find(new GridLocation(row, col))
+                        .equals(new GridLocation(row, col))) {
+>>>>>>> parent of d02b300 (Formatted Code)
                     numOfIslands++;
                 }
             }

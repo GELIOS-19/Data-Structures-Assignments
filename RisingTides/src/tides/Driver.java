@@ -18,9 +18,16 @@ import javax.swing.*;
 public class Driver implements MouseMotionListener {
 
     /**
+<<<<<<< HEAD
      * NOTE TO STUDENTS: This is the folder from which the Driver reads all of the terrain files.
      * Feel free to change the path to your choice, but please ensure the path is within the
      * RisingTides directory! This cannot access files outside of the RisingTides directory.
+=======
+     * NOTE TO STUDENTS: This is the folder from which the Driver reads all of
+     * the terrain files. Feel free to change the path to your choice, but
+     * please ensure the path is within the RisingTides directory! This cannot
+     * access files outside of the RisingTides directory.
+>>>>>>> parent of d02b300 (Formatted Code)
      */
     private static final File TERRAIN_DIRECTORY = new File("terrains");
 
@@ -82,6 +89,7 @@ public class Driver implements MouseMotionListener {
     }
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         SwingUtilities.invokeLater(
                 () -> {
                     try {
@@ -91,12 +99,31 @@ public class Driver implements MouseMotionListener {
                     }
                     new Driver();
                 });
+=======
+        SwingUtilities.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(
+                        UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception e) {
+                System.err.println(
+                        "Cannot set look and feel; falling back on default.");
+            }
+            new Driver();
+        });
+>>>>>>> parent of d02b300 (Formatted Code)
     }
 
     /* Returns a sorted list of all the terrain files we know. */
     private File[] terrainFilesIn(File directory) {
+<<<<<<< HEAD
         var results = directory.listFiles((File dir, String name) -> name.endsWith(".terrain"));
         Arrays.sort(results, (File one, File two) -> one.getName().compareTo(two.getName()));
+=======
+        var results = directory.listFiles(
+                (File dir, String name) -> name.endsWith(".terrain"));
+        Arrays.sort(results,
+                (File one, File two) -> one.getName().compareTo(two.getName()));
+>>>>>>> parent of d02b300 (Formatted Code)
         return results;
     }
 
@@ -112,6 +139,7 @@ public class Driver implements MouseMotionListener {
     /* Makes the "Load" button. */
     private JButton makeLoadButton() {
         var result = new JButton("Load");
+<<<<<<< HEAD
         result.addActionListener(
                 (ActionEvent e) -> {
                     heightInput.setText("0.0");
@@ -120,16 +148,31 @@ public class Driver implements MouseMotionListener {
                     glColInput.setText("0");
                     runSimulation((File) fileSelector.getSelectedItem());
                 });
+=======
+        result.addActionListener((ActionEvent e) -> {
+            heightInput.setText("0.0");
+            newHeightInput.setText("0.0");
+            glRowInput.setText("0");
+            glColInput.setText("0");
+            runSimulation((File) fileSelector.getSelectedItem());
+        });
+>>>>>>> parent of d02b300 (Formatted Code)
         return result;
     }
 
     /* Makes the "Go!" button that makes the magic happen. */
     private JButton makeGoButton() {
         var result = new JButton("Go!");
+<<<<<<< HEAD
         result.addActionListener(
                 (ActionEvent e) -> {
                     runSimulation((File) fileSelector.getSelectedItem());
                 });
+=======
+        result.addActionListener((ActionEvent e) -> {
+            runSimulation((File) fileSelector.getSelectedItem());
+        });
+>>>>>>> parent of d02b300 (Formatted Code)
         return result;
     }
 
@@ -174,7 +217,12 @@ public class Driver implements MouseMotionListener {
         panel2.setLayout(new FlowLayout());
 
         glColInput = new JTextField("0", 6);
+<<<<<<< HEAD
         panel2.add(new JLabel("<html>Is cell at coordinate &nbsp x (column): </html>"));
+=======
+        panel2.add(new JLabel(
+                "<html>Is cell at coordinate &nbsp x (column): </html>"));
+>>>>>>> parent of d02b300 (Formatted Code)
         panel2.add(glColInput);
 
         glRowInput = new JTextField("0", 6);
@@ -244,7 +292,12 @@ public class Driver implements MouseMotionListener {
      * locations using aspect ratios.
      */
     @Override
+<<<<<<< HEAD
     public void mouseDragged(MouseEvent e) {}
+=======
+    public void mouseDragged(MouseEvent e) {
+    }
+>>>>>>> parent of d02b300 (Formatted Code)
 
     @Override
     public void mouseMoved(MouseEvent e) {
@@ -252,6 +305,7 @@ public class Driver implements MouseMotionListener {
             PointerInfo a = MouseInfo.getPointerInfo();
             Point point = a.getLocation();
             SwingUtilities.convertPointFromScreen(point, display);
+<<<<<<< HEAD
             int xScreenLocation = (int) (point.getX() / display.getWidthAspect());
             int yScreenLocation = (int) (point.getY() / display.getHeightAspect());
 
@@ -267,6 +321,25 @@ public class Driver implements MouseMotionListener {
                                 "Please resize the window till there are no purple borders for better accuracy (coordinates %.2f%% inaccurate).",
                                 error * 100));
             else setStatusLine("");
+=======
+            int xScreenLocation = (int) (point.getX()
+                    / display.getWidthAspect());
+            int yScreenLocation = (int) (point.getY()
+                    / display.getHeightAspect());
+
+            String coords = "(" + xScreenLocation + ", " + yScreenLocation
+                    + ")";
+
+            double error = Math.abs((display.getDisplayAspectRatio()
+                    - display.getTerrainAspectRatio())
+                    / display.getTerrainAspectRatio());
+            if (error > 0.01)
+                setStatusLine(String.format(
+                        "Please resize the window till there are no purple borders for better accuracy (coordinates %.2f%% inaccurate).",
+                        error * 100));
+            else
+                setStatusLine("");
+>>>>>>> parent of d02b300 (Formatted Code)
 
             setCoordinates(coords);
         } catch (NullPointerException n) {
@@ -275,6 +348,7 @@ public class Driver implements MouseMotionListener {
 
     /* Methods to update text in main control panel if changes are made. */
     private void setCoordinates(final String text) {
+<<<<<<< HEAD
         SwingUtilities.invokeLater(
                 () -> {
                     coordinates.setText(text);
@@ -328,6 +402,53 @@ public class Driver implements MouseMotionListener {
                 () -> {
                     statusLine.setText(text);
                 });
+=======
+        SwingUtilities.invokeLater(() -> {
+            coordinates.setText(text);
+        });
+    }
+
+    private void setElevationExtrema(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            elevationExtremaLine.setText(text);
+        });
+    }
+
+    private void setIsFlooded(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            isFloodedLine.setText(text);
+        });
+    }
+
+    private void setHeightAboveWater(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            heightAboveWaterLine.setText(text);
+        });
+    }
+
+    private void setTotalLand(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            totalLandLine.setText(text);
+        });
+    }
+
+    private void setLandLost(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            landLostLine.setText(text);
+        });
+    }
+
+    private void setNumOfIslands(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            numOfIslandsLine.setText(text);
+        });
+    }
+
+    private void setStatusLine(final String text) {
+        SwingUtilities.invokeLater(() -> {
+            statusLine.setText(text);
+        });
+>>>>>>> parent of d02b300 (Formatted Code)
     }
 
     /*
@@ -352,22 +473,34 @@ public class Driver implements MouseMotionListener {
         try {
             waterHeight = Double.parseDouble(heightInput.getText());
         } catch (NumberFormatException e) {
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(
                     window,
                     "Please enter a number for the water height.",
                     "Water Height",
                     JOptionPane.ERROR_MESSAGE);
+=======
+            JOptionPane.showMessageDialog(window,
+                    "Please enter a number for the water height.",
+                    "Water Height", JOptionPane.ERROR_MESSAGE);
+>>>>>>> parent of d02b300 (Formatted Code)
             return;
         }
 
         try {
             newWaterHeight = Double.parseDouble(newHeightInput.getText());
         } catch (NumberFormatException e) {
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(
                     window,
                     "Please enter a number for the future water height.",
                     "Future Water Height",
                     JOptionPane.ERROR_MESSAGE);
+=======
+            JOptionPane.showMessageDialog(window,
+                    "Please enter a number for the future water height.",
+                    "Future Water Height", JOptionPane.ERROR_MESSAGE);
+>>>>>>> parent of d02b300 (Formatted Code)
             return;
         }
 
@@ -375,22 +508,34 @@ public class Driver implements MouseMotionListener {
         try {
             isFloodedRow = Integer.parseInt(glRowInput.getText());
         } catch (NumberFormatException e) {
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(
                     window,
                     "Please enter a valid integer for the row (y) number.",
                     "Row Is Flooded",
                     JOptionPane.ERROR_MESSAGE);
+=======
+            JOptionPane.showMessageDialog(window,
+                    "Please enter a valid integer for the row (y) number.",
+                    "Row Is Flooded", JOptionPane.ERROR_MESSAGE);
+>>>>>>> parent of d02b300 (Formatted Code)
             return;
         }
 
         try {
             isFloodedCol = Integer.parseInt(glColInput.getText());
         } catch (NumberFormatException e) {
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(
                     window,
                     "Please enter a valid integer for the column (x) number.",
                     "Column Is Flooded",
                     JOptionPane.ERROR_MESSAGE);
+=======
+            JOptionPane.showMessageDialog(window,
+                    "Please enter a valid integer for the column (x) number.",
+                    "Column Is Flooded", JOptionPane.ERROR_MESSAGE);
+>>>>>>> parent of d02b300 (Formatted Code)
             return;
         }
 
@@ -401,6 +546,7 @@ public class Driver implements MouseMotionListener {
                     /* Did the terrain change? */
                     if (!terrainFile.equals(lastFile)) {
                         setStatusLine("Loading the Terrain...");
+<<<<<<< HEAD
                         terrain =
                                 TerrainLoader.loadTerrain(
                                         terrainFile,
@@ -415,6 +561,16 @@ public class Driver implements MouseMotionListener {
                                                             + totalMB
                                                             + " MB)");
                                         });
+=======
+                        terrain = TerrainLoader.loadTerrain(terrainFile,
+                                (int bytes, int total) -> {
+                                    int percent = (int) (100.0 * bytes / total);
+                                    int totalMB = total / (1 << 20);
+                                    setStatusLine("Downloading Terrain " + " ("
+                                            + percent + "% of " + totalMB
+                                            + " MB)");
+                                });
+>>>>>>> parent of d02b300 (Formatted Code)
                         display.setTerrain(terrain.heights);
                         lastFile = terrainFile;
                     }
@@ -428,7 +584,12 @@ public class Driver implements MouseMotionListener {
                         display.setFlooding(flooded);
 
                         try {
+<<<<<<< HEAD
                             SwingUtilities.invokeAndWait(() -> display.repaint());
+=======
+                            SwingUtilities
+                                    .invokeAndWait(() -> display.repaint());
+>>>>>>> parent of d02b300 (Formatted Code)
                         } catch (InterruptedException e) {
                             SwingUtilities.invokeLater(() -> display.repaint());
                         } catch (InvocationTargetException e) {
@@ -436,7 +597,12 @@ public class Driver implements MouseMotionListener {
                         }
                         setStatusLine("");
                     } catch (Throwable e) {
+<<<<<<< HEAD
                         setStatusLine("floodedRegionsIn() error! " + e.getMessage());
+=======
+                        setStatusLine(
+                                "floodedRegionsIn() error! " + e.getMessage());
+>>>>>>> parent of d02b300 (Formatted Code)
                     }
 
                     try {
@@ -453,8 +619,12 @@ public class Driver implements MouseMotionListener {
                     } catch (Throwable e) {
                         setElevationExtrema(
                                 "<html><b> &nbsp Elevation Extrema:</b> Error! "
+<<<<<<< HEAD
                                         + e.getMessage()
                                         + "</html>");
+=======
+                                        + e.getMessage() + "</html>");
+>>>>>>> parent of d02b300 (Formatted Code)
                     }
 
                     try {
@@ -464,6 +634,7 @@ public class Driver implements MouseMotionListener {
                                 || isFloodedCol >= terrain.heights[0].length)
                             throw new NumberFormatException();
 
+<<<<<<< HEAD
                         boolean isFlooded =
                                 rt.isFlooded(
                                         waterHeight, new GridLocation(isFloodedRow, isFloodedCol));
@@ -488,10 +659,28 @@ public class Driver implements MouseMotionListener {
                                         + ").",
                                 "Is Flooded",
                                 JOptionPane.ERROR_MESSAGE);
+=======
+                        boolean isFlooded = rt.isFlooded(waterHeight,
+                                new GridLocation(isFloodedRow, isFloodedCol));
+                        String res = isFlooded ? "True" : "False";
+                        String spacing = " &emsp &emsp &ensp &nbsp ";
+                        setIsFlooded("<html><b> &nbsp Is (" + isFloodedCol
+                                + ", " + isFloodedRow
+                                + ") Flooded:</b><font color = 'red'>" + spacing
+                                + res + "</font></html>");
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(window,
+                                "Please enter a valid integer for the column/row number (column between 0 and "
+                                        + (terrain.heights[0].length - 1)
+                                        + ", row between 0 and "
+                                        + (terrain.heights.length - 1) + ").",
+                                "Is Flooded", JOptionPane.ERROR_MESSAGE);
+>>>>>>> parent of d02b300 (Formatted Code)
                         return;
                     } catch (Throwable e) {
                         setIsFlooded(
                                 "<html><b> &nbsp Is (x, y) Flooded:</b> Error! "
+<<<<<<< HEAD
                                         + e.getMessage()
                                         + "</html>");
                     }
@@ -520,6 +709,29 @@ public class Driver implements MouseMotionListener {
                                 "<html><b> &nbsp Height at (x, y):</b> Error! "
                                         + e.getMessage()
                                         + "</html>");
+=======
+                                        + e.getMessage() + "</html>");
+                    }
+
+                    try {
+                        double heightAboveWater = rt.heightAboveWater(
+                                waterHeight,
+                                new GridLocation(isFloodedRow, isFloodedCol));
+                        String outputHAW = heightAboveWater < 0 ? "meters below"
+                                : "meters above";
+                        heightAboveWater = Math.abs(heightAboveWater);
+
+                        String spacing = " &emsp &emsp &ensp &nbsp ";
+                        setHeightAboveWater("<html><b> &nbsp Height at ("
+                                + isFloodedCol + ", " + isFloodedRow
+                                + "):</b><font color = 'red'>" + spacing
+                                + heightAboveWater + "</font> " + outputHAW
+                                + " sea level</html>");
+                    } catch (Throwable e) {
+                        setHeightAboveWater(
+                                "<html><b> &nbsp Height at (x, y):</b> Error! "
+                                        + e.getMessage() + "</html>");
+>>>>>>> parent of d02b300 (Formatted Code)
                     }
 
                     try {
@@ -527,6 +739,7 @@ public class Driver implements MouseMotionListener {
                         String spacing = " &emsp &emsp &emsp &emsp &emsp ";
                         setTotalLand(
                                 "<html><b> &nbsp Total Land:</b><font color = 'red'>"
+<<<<<<< HEAD
                                         + spacing
                                         + totalLand
                                         + "</font> cells of land above water</html>");
@@ -535,10 +748,18 @@ public class Driver implements MouseMotionListener {
                                 "<html><b> &nbsp Total Land:</b> Error! "
                                         + e.getMessage()
                                         + "</html>");
+=======
+                                        + spacing + totalLand
+                                        + "</font> cells of land above water</html>");
+                    } catch (Throwable e) {
+                        setTotalLand("<html><b> &nbsp Total Land:</b> Error! "
+                                + e.getMessage() + "</html>");
+>>>>>>> parent of d02b300 (Formatted Code)
                     }
 
                     try {
                         int landLost = rt.landLost(waterHeight, newWaterHeight);
+<<<<<<< HEAD
                         String outputLL = landLost < 0 ? "Will gain" : "Will lose";
                         landLost = Math.abs(landLost);
 
@@ -555,6 +776,19 @@ public class Driver implements MouseMotionListener {
                                 "<html><b> &nbsp Land Lost:</b> Error! "
                                         + e.getMessage()
                                         + "</html>");
+=======
+                        String outputLL = landLost < 0 ? "Will gain"
+                                : "Will lose";
+                        landLost = Math.abs(landLost);
+
+                        String spacing = " &emsp &emsp &emsp &emsp &ensp &nbsp &nbsp ";
+                        setLandLost("<html><b> &nbsp Land Lost:</b>" + spacing
+                                + outputLL + "<font color = 'red'> " + landLost
+                                + "</font> cells of land</html>");
+                    } catch (Throwable e) {
+                        setLandLost("<html><b> &nbsp Land Lost:</b> Error! "
+                                + e.getMessage() + "</html>");
+>>>>>>> parent of d02b300 (Formatted Code)
                     }
 
                     try {
@@ -562,23 +796,37 @@ public class Driver implements MouseMotionListener {
                         String spacing = " &emsp &emsp ";
                         setNumOfIslands(
                                 "<html><b> &nbsp Number of Islands:</b><font color = 'red'>"
+<<<<<<< HEAD
                                         + spacing
                                         + numOfIslands
+=======
+                                        + spacing + numOfIslands
+>>>>>>> parent of d02b300 (Formatted Code)
                                         + "</font> islands</html>");
                     } catch (Throwable e) {
                         setNumOfIslands(
                                 "<html><b> &nbsp Number of Islands:</b> Error! "
+<<<<<<< HEAD
                                         + e.getMessage()
                                         + "</html>");
+=======
+                                        + e.getMessage() + "</html>");
+>>>>>>> parent of d02b300 (Formatted Code)
                     }
                 } catch (IOException e) {
                     setStatusLine("Error: " + e.getMessage());
                     throw new RuntimeException(e);
                 } finally {
+<<<<<<< HEAD
                     SwingUtilities.invokeLater(
                             () -> {
                                 setEnabled(controlPanel, true);
                             });
+=======
+                    SwingUtilities.invokeLater(() -> {
+                        setEnabled(controlPanel, true);
+                    });
+>>>>>>> parent of d02b300 (Formatted Code)
                 }
             }
         }.start();
