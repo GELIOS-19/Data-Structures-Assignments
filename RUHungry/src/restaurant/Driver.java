@@ -4,8 +4,8 @@ package restaurant;
  * To read from a file use StdIn.setFile(inputfilename) To write to a file use
  * StdOut.setFile(outputfilename)
  *
- * <p>Compiling and executing: 1. use the run or debug function to run the driver and test your
- * methods
+ * <p>Compiling and executing: 1. use the run or debug function to run the
+ * driver and test your methods
  *
  * @author Mary Buist
  * @author Kushi Sharma
@@ -16,13 +16,14 @@ public class Driver {
     private static MenuNode[] menuVar;
     private static StockNode[] stockVar;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         RUHungry restaurant = new RUHungry();
         String[] methodsToTest = {
             "Menu", "StockRoom", "Delete StockNode",
             "Transactions", "SeatAllGuests", "Quit"
         };
-        String[] moreMethods = {"order", "donate", "restock"};
+        String[] moreMethods = { "order", "donate", "restock" };
         int controlChoice = 1;
         int choice = 0;
 
@@ -37,117 +38,119 @@ public class Driver {
             StdOut.print("Enter a number => ");
             choice = Integer.parseInt(StdIn.readLine());
             switch (choice) {
-                case 1:
-                    // Menu
-                    StdOut.print("Slay! Enter the menu input file [there's only one ;) ] => ");
-                    String menuInputFile = StdIn.readLine();
-                    StdOut.println();
+            case 1:
+                // Menu
+                StdOut.print(
+                    "Slay! Enter the menu input file [there's only one ;) ] => ");
+                String menuInputFile = StdIn.readLine();
+                StdOut.println();
 
-                    testMenu(menuInputFile, restaurant);
-                    break;
-                case 2:
-                    // Stock Room
-                    restaurant.menu("menu.in");
-                    menuVar = restaurant.getMenu();
-                    category = restaurant.getCategoryArray();
-                    StdIn.resetFile();
+                testMenu(menuInputFile, restaurant);
+                break;
+            case 2:
+                // Stock Room
+                restaurant.menu("menu.in");
+                menuVar = restaurant.getMenu();
+                category = restaurant.getCategoryArray();
+                StdIn.resetFile();
 
-                    StdOut.print(
-                            "Okie Dokie! Enter the stock input file [there's only one ;) ] => ");
-                    String stockInputFile = StdIn.readLine();
-                    StdOut.println();
+                StdOut.print(
+                    "Okie Dokie! Enter the stock input file [there's only one ;) ] => ");
+                String stockInputFile = StdIn.readLine();
+                StdOut.println();
 
-                    testStockHashtable(stockInputFile, restaurant);
-                    break;
-                case 3:
-                    // deleteStockNode
-                    StdOut.print("Type the name of the ingredient you want to delete! => ");
-                    String ingredientToDelete = StdIn.readLine();
-                    StdOut.println();
+                testStockHashtable(stockInputFile, restaurant);
+                break;
+            case 3:
+                // deleteStockNode
+                StdOut.print("Type the name of the ingredient you want to delete! => ");
+                String ingredientToDelete = StdIn.readLine();
+                StdOut.println();
 
-                    testDelete(restaurant, ingredientToDelete);
-                    break;
-                case 4:
-                    // Transactions
-                    restaurant.menu("menu.in");
-                    menuVar = restaurant.getMenu();
-                    category = restaurant.getCategoryArray();
-                    StdIn.resetFile();
-                    restaurant.createStockHashTable("stock.in");
-                    stockVar = restaurant.getStockVar();
-                    restaurant.updatePriceAndProfit();
-                    StdIn.resetFile();
+                testDelete(restaurant, ingredientToDelete);
+                break;
+            case 4:
+                // Transactions
+                restaurant.menu("menu.in");
+                menuVar = restaurant.getMenu();
+                category = restaurant.getCategoryArray();
+                StdIn.resetFile();
+                restaurant.createStockHashTable("stock.in");
+                stockVar = restaurant.getStockVar();
+                restaurant.updatePriceAndProfit();
+                StdIn.resetFile();
 
-                    StdOut.print(
-                            "Quick Question! Do you want to test an individual transaction method (order, donation, restock)? [ Y OR N ] => ");
-                    String yesORno = StdIn.readLine();
-                    if (yesORno.equalsIgnoreCase("Y")) {
+                StdOut.print(
+                    "Quick Question! Do you want to test an individual transaction method (order, donation, restock)? [ Y OR N ] => ");
+                String yesORno = StdIn.readLine();
+                if (yesORno.equalsIgnoreCase("Y")) {
 
-                        StdOut.println(
-                                "Alrighty! Which one would you like to test?"); // we can make
-                        // separate input
-                        // files for peeps
-                        // who want to
-                        // test each
-                        // individual
-                        // method
-                        for (int i = 0; i < moreMethods.length; i++) {
-                            StdOut.printf("%d. %s\n", i + 1, moreMethods[i]);
-                        }
-                        StdOut.print("Enter a number => ");
-                        int secondChoice = Integer.parseInt(StdIn.readLine());
-
-                        switch (secondChoice) {
-                            case 1:
-                                StdOut.print("Slay! Enter an order input file => ");
-                                String orderInputFile = StdIn.readLine();
-
-                                testIndividualMethods(orderInputFile, "order", restaurant);
-                                break;
-                            case 2:
-                                StdOut.print(
-                                        "Slay Queen (or King)! Enter a donation input file => ");
-                                String donationInputFile = StdIn.readLine();
-
-                                testIndividualMethods(donationInputFile, "donation", restaurant);
-                                break;
-                            case 3:
-                                StdOut.print("Awesome! Enter a restock input file => ");
-                                String restockInputFile = StdIn.readLine();
-
-                                testIndividualMethods(restockInputFile, "restock", restaurant);
-                                break;
-                            default:
-                                StdOut.print(
-                                        "Omg, that isn't a valid option but no worries, try again! <3");
-                        }
-                    } else if (yesORno.equalsIgnoreCase("N")) {
-                        StdOut.print("Okay lit! Enter a transaction input file => ");
-                        String transactionInputFile = StdIn.readLine();
-
-                        testTransactionMethods(transactionInputFile, restaurant);
-                    } else {
-                        StdOut.println(
-                                "Omg, that isn't a valid option but no worries, try again! <3");
+                    StdOut.println(
+                        "Alrighty! Which one would you like to test?"); // we can make
+                    // separate input
+                    // files for peeps
+                    // who want to
+                    // test each
+                    // individual
+                    // method
+                    for (int i = 0; i < moreMethods.length; i++) {
+                        StdOut.printf("%d. %s\n", i + 1, moreMethods[i]);
                     }
-                    break;
-                case 5:
-                    // seatAllGuests
-                    StdOut.print("Slay! Enter a table input file => ");
-                    String tableInputFile = StdIn.readLine();
-                    StdOut.print("Okay Perfect! Now enter a seat guests input file => ");
-                    String seatGuestsInputFile = StdIn.readLine();
-                    StdOut.println();
+                    StdOut.print("Enter a number => ");
+                    int secondChoice = Integer.parseInt(StdIn.readLine());
 
-                    testSeatAllGuests(seatGuestsInputFile, tableInputFile, restaurant);
-                    StdOut.println();
-                    break;
-                case 6:
-                    // Quit
-                    controlChoice = 2;
-                    break;
-                default:
-                    StdOut.println("Omg, that isn't a valid option but no worries, try again! <3");
+                    switch (secondChoice) {
+                    case 1:
+                        StdOut.print("Slay! Enter an order input file => ");
+                        String orderInputFile = StdIn.readLine();
+
+                        testIndividualMethods(orderInputFile, "order", restaurant);
+                        break;
+                    case 2:
+                        StdOut.print(
+                            "Slay Queen (or King)! Enter a donation input file => ");
+                        String donationInputFile = StdIn.readLine();
+
+                        testIndividualMethods(donationInputFile, "donation", restaurant);
+                        break;
+                    case 3:
+                        StdOut.print("Awesome! Enter a restock input file => ");
+                        String restockInputFile = StdIn.readLine();
+
+                        testIndividualMethods(restockInputFile, "restock", restaurant);
+                        break;
+                    default:
+                        StdOut.print(
+                            "Omg, that isn't a valid option but no worries, try again! <3");
+                    }
+                } else if (yesORno.equalsIgnoreCase("N")) {
+                    StdOut.print("Okay lit! Enter a transaction input file => ");
+                    String transactionInputFile = StdIn.readLine();
+
+                    testTransactionMethods(transactionInputFile, restaurant);
+                } else {
+                    StdOut.println(
+                        "Omg, that isn't a valid option but no worries, try again! <3");
+                }
+                break;
+            case 5:
+                // seatAllGuests
+                StdOut.print("Slay! Enter a table input file => ");
+                String tableInputFile = StdIn.readLine();
+                StdOut.print("Okay Perfect! Now enter a seat guests input file => ");
+                String seatGuestsInputFile = StdIn.readLine();
+                StdOut.println();
+
+                testSeatAllGuests(seatGuestsInputFile, tableInputFile, restaurant);
+                StdOut.println();
+                break;
+            case 6:
+                // Quit
+                controlChoice = 2;
+                break;
+            default:
+                StdOut.println(
+                    "Omg, that isn't a valid option but no worries, try again! <3");
             }
             StdIn.resetFile();
         } while (controlChoice == 1);
@@ -155,7 +158,8 @@ public class Driver {
 
     /***********************************************/
 
-    public static void testMenu(String inputFile, RUHungry restaurant) {
+    public static void testMenu(String inputFile, RUHungry restaurant)
+    {
         restaurant.menu("menu.in");
         menuVar = restaurant.getMenu();
         category = restaurant.getCategoryArray();
@@ -168,11 +172,7 @@ public class Driver {
             MenuNode ptr = menuVar[i];
             while (ptr != null) {
                 StdOut.print(
-                        ptr.getDish().getDishName()
-                                + "  Price: $"
-                                + ((Math.round(ptr.getDish().getPriceOfDish() * 100.0)) / 100.0)
-                                + " Profit: $"
-                                + ((Math.round(ptr.getDish().getProfit() * 100.0)) / 100.0));
+                    ptr.getDish().getDishName() + "  Price: $" + ((Math.round(ptr.getDish().getPriceOfDish() * 100.0)) / 100.0) + " Profit: $" + ((Math.round(ptr.getDish().getProfit() * 100.0)) / 100.0));
                 StdOut.println();
 
                 ptr = ptr.getNextMenuNode();
@@ -182,7 +182,8 @@ public class Driver {
         }
     }
 
-    public static void testStockHashtable(String inputFile, RUHungry restaurant) {
+    public static void testStockHashtable(String inputFile, RUHungry restaurant)
+    {
         restaurant.createStockHashTable(inputFile);
         stockVar = restaurant.getStockVar();
         restaurant.updatePriceAndProfit();
@@ -192,13 +193,7 @@ public class Driver {
             StockNode ptr = stockVar[i];
             while (ptr != null) {
                 StdOut.print(
-                        ptr.getIngredient().getName()
-                                + "  ID: "
-                                + ptr.getIngredient().getID()
-                                + " Price: "
-                                + ((Math.round(ptr.getIngredient().getCost() * 100.0)) / 100.0)
-                                + " Stock Level: "
-                                + ptr.getIngredient().getStockLevel());
+                    ptr.getIngredient().getName() + "  ID: " + ptr.getIngredient().getID() + " Price: " + ((Math.round(ptr.getIngredient().getCost() * 100.0)) / 100.0) + " Stock Level: " + ptr.getIngredient().getStockLevel());
                 StdOut.println();
 
                 ptr = ptr.getNextStockNode();
@@ -207,7 +202,8 @@ public class Driver {
             StdOut.println();
         }
 
-        StdOut.println("Here's the menu again! Make sure to check price and profit:");
+        StdOut.println(
+            "Here's the menu again! Make sure to check price and profit:");
         StdOut.println();
 
         for (int i = 0; i < category.length; i++) {
@@ -217,11 +213,7 @@ public class Driver {
             MenuNode ptr = menuVar[i];
             while (ptr != null) {
                 StdOut.print(
-                        ptr.getDish().getDishName()
-                                + "  Price: $"
-                                + ((Math.round(ptr.getDish().getPriceOfDish() * 100.0)) / 100.0)
-                                + " Profit: $"
-                                + ((Math.round(ptr.getDish().getProfit() * 100.0)) / 100.0));
+                    ptr.getDish().getDishName() + "  Price: $" + ((Math.round(ptr.getDish().getPriceOfDish() * 100.0)) / 100.0) + " Profit: $" + ((Math.round(ptr.getDish().getProfit() * 100.0)) / 100.0));
                 StdOut.println();
 
                 ptr = ptr.getNextMenuNode();
@@ -232,7 +224,9 @@ public class Driver {
     }
 
     // method to test deleteStockNode
-    public static void testDelete(RUHungry restaurant, String ingredientToDelete) {
+    public static void testDelete(RUHungry restaurant,
+        String ingredientToDelete)
+    {
         restaurant.createStockHashTable("stock.in");
         restaurant.deleteStockNode(ingredientToDelete);
         stockVar = restaurant.getStockVar();
@@ -241,14 +235,7 @@ public class Driver {
             StdOut.println("index " + i);
             StockNode ptr = stockVar[i];
             while (ptr != null) {
-                StdOut.print(
-                        ptr.getIngredient().getName()
-                                + "  ID: "
-                                + ptr.getIngredient().getID()
-                                + " Price: "
-                                + ptr.getIngredient().getCost()
-                                + " Stock Level: "
-                                + ptr.getIngredient().getStockLevel());
+                StdOut.print(ptr.getIngredient().getName() + "  ID: " + ptr.getIngredient().getID() + " Price: " + ptr.getIngredient().getCost() + " Stock Level: " + ptr.getIngredient().getStockLevel());
                 StdOut.println();
 
                 ptr = ptr.getNextStockNode();
@@ -261,8 +248,10 @@ public class Driver {
     // the methods to test transaction methods create a simple TransactionNode and
     // adds it to the transaction LL so that you will be able to run these methods
 
-    public static void testIndividualMethods(
-            String inputOrdersFile, String transactionType, RUHungry restaurant) {
+    public static void testIndividualMethods(String inputOrdersFile,
+        String transactionType,
+        RUHungry restaurant)
+    {
         restaurant.createStockHashTable("stock.in");
         restaurant.menu("menu.in");
         restaurant.updatePriceAndProfit();
@@ -279,7 +268,8 @@ public class Driver {
                 restaurant.order(itemOrdered, amountOrdered);
             }
         } else if (transactionType.equalsIgnoreCase("donation")) {
-            restaurant.addTransactionNode(new TransactionData("N/A", "N/A", 0, 112, false));
+            restaurant.addTransactionNode(
+                new TransactionData("N/A", "N/A", 0, 112, false));
             for (int orderNumber = 0; orderNumber < numOrders; orderNumber++) {
                 int amountOrdered = StdIn.readInt();
                 StdIn.readChar();
@@ -288,7 +278,8 @@ public class Driver {
                 restaurant.donation(itemOrdered, amountOrdered);
             }
         } else if (transactionType.equalsIgnoreCase("restock")) {
-            restaurant.addTransactionNode(new TransactionData("N/A", "N/A", 0, 112, false));
+            restaurant.addTransactionNode(
+                new TransactionData("N/A", "N/A", 0, 112, false));
             for (int orderNumber = 0; orderNumber < numOrders; orderNumber++) {
                 int amountOrdered = StdIn.readInt();
                 StdIn.readChar();
@@ -313,27 +304,18 @@ public class Driver {
                 failures += 1;
             }
 
-            StdOut.println(
-                    "Type: "
-                            + type
-                            + ", Name: "
-                            + item
-                            + ", Amount: "
-                            + amount
-                            + ", Profit: $"
-                            + ((Math.round(profit * 100.0)) / 100.0)
-                            + ", Was it a Success? "
-                            + success);
+            StdOut.println("Type: " + type + ", Name: " + item + ", Amount: " + amount + ", Profit: $" + ((Math.round(profit * 100.0)) / 100.0) + ", Was it a Success? " + success);
 
             ptr = ptr.getNext();
         }
         StdOut.println("Total number of successful transactions: " + successes);
         StdOut.println("Total number of unsuccessful transactions: " + failures);
-        StdOut.println(
-                "Total profit remaining: $" + ((Math.round(restaurant.profit() * 100.0)) / 100.0));
+        StdOut.println("Total profit remaining: $" + ((Math.round(restaurant.profit() * 100.0)) / 100.0));
     }
 
-    public static void testTransactionMethods(String inputOrdersFile, RUHungry restaurant) {
+    public static void testTransactionMethods(String inputOrdersFile,
+        RUHungry restaurant)
+    {
         restaurant.createStockHashTable("stock.in");
         restaurant.menu("menu.in");
         restaurant.updatePriceAndProfit();
@@ -346,10 +328,9 @@ public class Driver {
             StdIn.readChar(); // empty
             int amountOrdered = StdIn.readInt(); // reads how much was ordered/restocked
             StdIn.readChar();
-            String itemOrdered =
-                    StdIn.readLine(); // reads what item was ordered/requested/delivered
-            // (for donations and deliveries we must Parse
-            // string to int)
+            String itemOrdered = StdIn.readLine(); // reads what item was
+                                                   // ordered/requested/delivered (for donations and
+                                                   // deliveries we must Parse string to int)
             if (type.equalsIgnoreCase("order")) {
                 // call orderMethod from RUHungry
                 restaurant.order(itemOrdered, amountOrdered);
@@ -377,28 +358,19 @@ public class Driver {
                 failures += 1;
             }
 
-            StdOut.println(
-                    "Type: "
-                            + type
-                            + ", Name: "
-                            + item
-                            + ", Amount: "
-                            + amount
-                            + ", Profit: $"
-                            + ((Math.round(profit * 100.0)) / 100.0)
-                            + ", Was it a Success? "
-                            + success);
+            StdOut.println("Type: " + type + ", Name: " + item + ", Amount: " + amount + ", Profit: $" + ((Math.round(profit * 100.0)) / 100.0) + ", Was it a Success? " + success);
 
             ptr = ptr.getNext();
         }
         StdOut.println("Total number of successful transactions: " + successes);
         StdOut.println("Total number of unsuccessful transactions: " + failures);
-        StdOut.println(
-                "Total profit remaining: $" + ((Math.round(restaurant.profit() * 100.0)) / 100.0));
+        StdOut.println("Total profit remaining: $" + ((Math.round(restaurant.profit() * 100.0)) / 100.0));
     }
 
-    public static void testSeatAllGuests(
-            String inputSeatFile, String inputTableFile, RUHungry restaurant) {
+    public static void testSeatAllGuests(String inputSeatFile,
+        String inputTableFile,
+        RUHungry restaurant)
+    {
         restaurant.createTables(inputTableFile);
 
         StdIn.setFile(inputSeatFile);
