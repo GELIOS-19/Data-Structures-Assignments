@@ -3,9 +3,8 @@ package games;
 import java.util.*;
 
 /**
- * This class contains methods to represent the Hunger Games using BSTs. Moves
- * people from input files to districts, eliminates people from the game, and
- * determines a possible winner.
+ * This class contains methods to represent the Hunger Games using BSTs. Moves people from input
+ * files to districts, eliminates people from the game, and determines a possible winner.
  *
  * @author Pranay Roni
  * @author Maksims Kurjanovics Kravcenko
@@ -14,11 +13,12 @@ import java.util.*;
 public class HungerGames {
   private ArrayList<District> districts; // all districts in Panem.
   private TreeNode game; // root of the BST. The BST contains districts that are
-                         // still in the game.
+
+  // still in the game.
 
   /**
-   * ***** DO NOT REMOVE OR UPDATE this method ********* Default constructor,
-   * initializes a list of districts.
+   * ***** DO NOT REMOVE OR UPDATE this method ********* Default constructor, initializes a list of
+   * districts.
    */
   public HungerGames() {
     districts = new ArrayList<>();
@@ -27,9 +27,8 @@ public class HungerGames {
   }
 
   /**
-   * ***** DO NOT REMOVE OR UPDATE this method ********* Sets up Panem, the
-   * universe in which the Hunger Games takes place. Reads districts and people
-   * from the input file.
+   * ***** DO NOT REMOVE OR UPDATE this method ********* Sets up Panem, the universe in which the
+   * Hunger Games takes place. Reads districts and people from the input file.
    *
    * @param filename will be provided by client to read from using StdIn
    */
@@ -40,9 +39,8 @@ public class HungerGames {
   }
 
   /**
-   * Reads the following from input file: - Number of districts - District ID's
-   * (insert in order of insertion) Insert districts into the districts
-   * ArrayList in order of appearance.
+   * Reads the following from input file: - Number of districts - District ID's (insert in order of
+   * insertion) Insert districts into the districts ArrayList in order of appearance.
    *
    * @param filename will be provided by client to read from using StdIn
    */
@@ -57,13 +55,12 @@ public class HungerGames {
   }
 
   /**
-   * Reads the following from input file (continues to read from the SAME input
-   * file as setupDistricts()): Number of people Space-separated: first name,
-   * last name, birth month (1-12), age, district id, effectiveness Districts
-   * will be initialized to the instance variable districts
-   * <p>
-   * Persons will be added to corresponding district in districts defined by
-   * districtID
+   * Reads the following from input file (continues to read from the SAME input file as
+   * setupDistricts()): Number of people Space-separated: first name, last name, birth month (1-12),
+   * age, district id, effectiveness Districts will be initialized to the instance variable
+   * districts
+   *
+   * <p>Persons will be added to corresponding district in districts defined by districtID
    *
    * @param filename will be provided by client to read from using StdIn
    */
@@ -84,12 +81,11 @@ public class HungerGames {
       int districtId = Integer.parseInt(personData[4]);
       int effectiveness = Integer.parseInt(personData[5]);
       // Create the person
-      Person person = new Person(birthMonth, firstName, lastName, age,
-          districtId, effectiveness);
+      Person person = new Person(birthMonth, firstName, lastName, age, districtId, effectiveness);
       person.setTessera(age >= 12 && age < 18);
       // Add the person to their corresponding district
-      District district = this.districts.stream()
-          .filter(d -> d.getDistrictID() == districtId).findFirst().get();
+      District district =
+          this.districts.stream().filter(d -> d.getDistrictID() == districtId).findFirst().get();
       if (birthMonth % 2 == 0) {
         district.addEvenPerson(person);
       } else if (birthMonth % 2 == 1) {
@@ -99,11 +95,9 @@ public class HungerGames {
   }
 
   /**
-   * Adds a district to the game BST. If the district is already added, do
-   * nothing
+   * Adds a district to the game BST. If the district is already added, do nothing
    *
-   * @param root        the TreeNode root which we access all the added
-   *                      districts
+   * @param root the TreeNode root which we access all the added districts
    * @param newDistrict the district we wish to add
    */
   public void addDistrictToGame(TreeNode root, District newDistrict) {
@@ -117,8 +111,7 @@ public class HungerGames {
         } else {
           this.addDistrictToGame(root.getLeft(), newDistrict);
         }
-      } else if (newDistrict.getDistrictID() > root.getDistrict()
-          .getDistrictID()) {
+      } else if (newDistrict.getDistrictID() > root.getDistrict().getDistrictID()) {
         if (root.getRight() == null) {
           root.setRight(new TreeNode(newDistrict, null, null));
         } else {
@@ -150,14 +143,12 @@ public class HungerGames {
   }
 
   /**
-   * Selects two duelers from the tree, following these rules: - One odd person
-   * and one even person should be in the pair. - Dueler with Tessera (age
-   * 12-18, use tessera instance variable) must be retrieved first. - Find the
-   * first odd person and even person (separately) with Tessera if they exist. -
-   * If you can't find a person, use StdRandom.uniform(x) where x is the
-   * respective population size to obtain a dueler. - Add odd person dueler to
-   * person1 of new DuelerPair and even person dueler to person2. - People from
-   * the same district cannot fight against each other.
+   * Selects two duelers from the tree, following these rules: - One odd person and one even person
+   * should be in the pair. - Dueler with Tessera (age 12-18, use tessera instance variable) must be
+   * retrieved first. - Find the first odd person and even person (separately) with Tessera if they
+   * exist. - If you can't find a person, use StdRandom.uniform(x) where x is the respective
+   * population size to obtain a dueler. - Add odd person dueler to person1 of new DuelerPair and
+   * even person dueler to person2. - People from the same district cannot fight against each other.
    *
    * @return the pair of dueler retrieved from this method.
    */
@@ -180,18 +171,23 @@ public class HungerGames {
         preOrderTraversal.push(node.getLeft());
       }
       if (oddDueler == null) {
-        oddDueler = node.getDistrict().getOddPopulation().stream()
-            .filter(Person::getTessera).findFirst().orElse(null);
+        oddDueler =
+            node.getDistrict().getOddPopulation().stream()
+                .filter(Person::getTessera)
+                .findFirst()
+                .orElse(null);
         if (oddDueler != null) {
           selectedDistrictIDs.add(node.getDistrict().getDistrictID());
           continue;
         }
       }
       if (evenDueler == null) {
-        evenDueler = node.getDistrict().getEvenPopulation().stream()
-            .filter(Person::getTessera).findFirst().orElse(null);
-        if (evenDueler != null)
-          selectedDistrictIDs.add(node.getDistrict().getDistrictID());
+        evenDueler =
+            node.getDistrict().getEvenPopulation().stream()
+                .filter(Person::getTessera)
+                .findFirst()
+                .orElse(null);
+        if (evenDueler != null) selectedDistrictIDs.add(node.getDistrict().getDistrictID());
       }
     }
     // We must do a second traversal of the tree to find random duelers if
@@ -213,25 +209,27 @@ public class HungerGames {
         continue;
       }
       if (oddDueler == null) {
-        oddDueler = node.getDistrict().getOddPopulation().get(
-            StdRandom.uniform(node.getDistrict().getOddPopulation().size()));
+        oddDueler =
+            node.getDistrict()
+                .getOddPopulation()
+                .get(StdRandom.uniform(node.getDistrict().getOddPopulation().size()));
         continue;
       }
-      evenDueler = node.getDistrict().getEvenPopulation().get(
-          StdRandom.uniform(node.getDistrict().getEvenPopulation().size()));
+      evenDueler =
+          node.getDistrict()
+              .getEvenPopulation()
+              .get(StdRandom.uniform(node.getDistrict().getEvenPopulation().size()));
     }
-    this.findDistrict(oddDueler.getDistrictID()).getOddPopulation()
-        .remove(oddDueler);
-    this.findDistrict(evenDueler.getDistrictID()).getEvenPopulation()
-        .remove(evenDueler);
+    this.findDistrict(oddDueler.getDistrictID()).getOddPopulation().remove(oddDueler);
+    this.findDistrict(evenDueler.getDistrictID()).getEvenPopulation().remove(evenDueler);
     return new DuelPair(oddDueler, evenDueler);
   }
 
   /**
-   * Deletes a district from the BST when they are eliminated from the game.
-   * Districts are identified by id's. If district does not exist, do nothing.
-   * <p>
-   * This is similar to the BST delete we have seen in class.
+   * Deletes a district from the BST when they are eliminated from the game. Districts are
+   * identified by id's. If district does not exist, do nothing.
+   *
+   * <p>This is similar to the BST delete we have seen in class.
    *
    * @param id the ID of the district to eliminate
    */
@@ -252,8 +250,7 @@ public class HungerGames {
       }
     }
     // If target is null, the district is not found
-    if (target == null)
-      return;
+    if (target == null) return;
     // Remove from districts array
     this.districts.remove(target.getDistrict());
     // Case 1: No children
@@ -268,8 +265,7 @@ public class HungerGames {
     }
     // Case 2: One child
     else if (target.getLeft() == null || target.getRight() == null) {
-      TreeNode childNode = (target.getLeft() != null) ? target.getLeft()
-          : target.getRight();
+      TreeNode childNode = (target.getLeft() != null) ? target.getLeft() : target.getRight();
       if (parent == null) {
         game = childNode;
       } else if (parent.getLeft() == target) {
@@ -296,10 +292,9 @@ public class HungerGames {
   }
 
   /**
-   * Eliminates a dueler from a pair of duelers. - Both duelers in the DuelPair
-   * argument given will duel - Winner gets returned to their District -
-   * Eliminate a District if it only contains a odd person population or even
-   * person population
+   * Eliminates a dueler from a pair of duelers. - Both duelers in the DuelPair argument given will
+   * duel - Winner gets returned to their District - Eliminate a District if it only contains a odd
+   * person population or even person population
    *
    * @param pair of persons to fight each other.
    */
@@ -329,19 +324,18 @@ public class HungerGames {
     }
     // Eliminate district
     int winnerDistrictOddPopulation = winnerDistrict.getOddPopulation().size();
-    int winnerDistrictEvenPopulation = winnerDistrict.getEvenPopulation()
-        .size();
-    int winnerDistrictTotalPopulation = winnerDistrictOddPopulation
-        + winnerDistrictEvenPopulation;
+    int winnerDistrictEvenPopulation = winnerDistrict.getEvenPopulation().size();
+    int winnerDistrictTotalPopulation = winnerDistrictOddPopulation + winnerDistrictEvenPopulation;
     int loserDistrictOddPopulation = loserDistrict.getOddPopulation().size();
     int loserDistrictEvenPopulation = loserDistrict.getEvenPopulation().size();
-    int loserDistrictTotalPopulation = loserDistrictOddPopulation
-        + loserDistrictEvenPopulation;
-    if (winnerDistrictTotalPopulation == 0 || winnerDistrictEvenPopulation == 0
+    int loserDistrictTotalPopulation = loserDistrictOddPopulation + loserDistrictEvenPopulation;
+    if (winnerDistrictTotalPopulation == 0
+        || winnerDistrictEvenPopulation == 0
         || winnerDistrictOddPopulation == 0) {
       this.eliminateDistrict(winnerDistrict.getDistrictID());
     }
-    if (loserDistrictTotalPopulation == 0 || loserDistrictEvenPopulation == 0
+    if (loserDistrictTotalPopulation == 0
+        || loserDistrictEvenPopulation == 0
         || loserDistrictOddPopulation == 0) {
       this.eliminateDistrict(loserDistrict.getDistrictID());
     }
@@ -349,8 +343,8 @@ public class HungerGames {
 
   /**
    * ***** DO NOT REMOVE OR UPDATE this method *********
-   * <p>
-   * Obtains the list of districts for the Driver.
+   *
+   * <p>Obtains the list of districts for the Driver.
    *
    * @return the ArrayList of districts for selection
    */
@@ -360,8 +354,8 @@ public class HungerGames {
 
   /**
    * ***** DO NOT REMOVE OR UPDATE this method *********
-   * <p>
-   * Returns the root of the BST
+   *
+   * <p>Returns the root of the BST
    */
   public TreeNode getRoot() {
     return game;

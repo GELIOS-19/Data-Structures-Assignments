@@ -16,8 +16,7 @@ public final class GridLocation {
 
   @Override
   public boolean equals(Object rhs) {
-    if (!(rhs instanceof GridLocation))
-      return false;
+    if (!(rhs instanceof GridLocation)) return false;
     var other = (GridLocation) rhs;
     return row == other.row && col == other.col;
   }

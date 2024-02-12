@@ -1,8 +1,7 @@
 package games;
 
 /**
- * This class contains a pair person 1 and person 2 that will duel in the Hunger
- * Games
+ * This class contains a pair person 1 and person 2 that will duel in the Hunger Games
  *
  * @author Pranay Roni
  */

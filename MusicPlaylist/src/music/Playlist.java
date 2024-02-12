@@ -2,15 +2,14 @@ package music;
 
 /**
  * This class represents a playlist containing many songs.
- * <p>
- * The Playlist is a Circular Linked list of SongNode objects.
+ *
+ * <p>The Playlist is a Circular Linked list of SongNode objects.
  *
  * @author Jeremy Hui
  * @author Vian Miranda
  */
 public class Playlist {
-  private SongNode last; // reference to the last node in the Circular Linked
-                         // List
+  private SongNode last; // reference to the last node in the Circular Linked List
   private int size; // the number of SongNodes (songs) in the list
 
   /*

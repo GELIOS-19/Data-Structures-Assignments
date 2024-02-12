@@ -3,17 +3,21 @@ package games;
 import java.util.ArrayList;
 
 /**
- * This class tests each method in the Hunger Games class to interactively
- * display outputs.
+ * This class tests each method in the Hunger Games class to interactively display outputs.
  *
  * @author Kal Pandit
  */
 public class Driver {
   public static void main(String[] args) {
-    String[] methods = { "setupPanem", "addDistrictToGame", "findDistrict",
-        "selectDuelers", "eliminateDistrict", "eliminateDueler" };
-    String[] options = { "Test new file", "Test new method on the same file",
-        "Quit" };
+    String[] methods = {
+      "setupPanem",
+      "addDistrictToGame",
+      "findDistrict",
+      "selectDuelers",
+      "eliminateDistrict",
+      "eliminateDueler"
+    };
+    String[] options = {"Test new file", "Test new method on the same file", "Quit"};
     int repeatChoice = 0;
     do {
       System.err.print("Enter an input text file name => ");
@@ -36,27 +40,27 @@ public class Driver {
         StdIn.readLine();
         System.err.println();
         switch (choice) {
-        case 1:
-          studentHungerGames = testSetupPanem(input);
-          break;
-        case 2:
-          testAddDistrictToGame(studentHungerGames, input);
-          break;
-        case 3:
-          testFindDistrict(studentHungerGames, input);
-          break;
-        case 4:
-          pair = testSelectDuelers(studentHungerGames, input);
-          break;
-        case 5:
-          testEliminateDistrict(studentHungerGames, input);
-          break;
-        case 6:
-          testEliminateDueler(studentHungerGames, pair);
-          pair = null;
-          break;
-        default:
-          System.err.println("Not a valid method to test!");
+          case 1:
+            studentHungerGames = testSetupPanem(input);
+            break;
+          case 2:
+            testAddDistrictToGame(studentHungerGames, input);
+            break;
+          case 3:
+            testFindDistrict(studentHungerGames, input);
+            break;
+          case 4:
+            pair = testSelectDuelers(studentHungerGames, input);
+            break;
+          case 5:
+            testEliminateDistrict(studentHungerGames, input);
+            break;
+          case 6:
+            testEliminateDueler(studentHungerGames, pair);
+            pair = null;
+            break;
+          default:
+            System.err.println("Not a valid method to test!");
         }
         StdIn.resync();
         System.err.println("\nWhat would you like to do now?");
@@ -81,8 +85,7 @@ public class Driver {
     return hg;
   }
 
-  private static void testAddDistrictToGame(HungerGames studentHungerGames,
-      String input) {
+  private static void testAddDistrictToGame(HungerGames studentHungerGames, String input) {
     if (studentHungerGames.getDistricts().size() == 0) {
       StdOut.println("No districts available!");
       return;
@@ -109,15 +112,14 @@ public class Driver {
         studentHungerGames.addDistrictToGame(studentHungerGames.getRoot(), d);
       }
     } else {
-      studentHungerGames.addDistrictToGame(studentHungerGames.getRoot(),
-          studentHungerGames.getDistricts().get(choice));
+      studentHungerGames.addDistrictToGame(
+          studentHungerGames.getRoot(), studentHungerGames.getDistricts().get(choice));
     }
     StdOut.println("District Tree: ");
     printTree(studentHungerGames.getRoot());
   }
 
-  private static void testFindDistrict(HungerGames studentHungerGames,
-      String input) {
+  private static void testFindDistrict(HungerGames studentHungerGames, String input) {
     System.err.print("Enter a district ID  => ");
     int choice = StdIn.readInt();
     StdIn.readLine();
@@ -131,8 +133,7 @@ public class Driver {
     }
   }
 
-  private static void testEliminateDistrict(HungerGames studentHungerGames,
-      String input) {
+  private static void testEliminateDistrict(HungerGames studentHungerGames, String input) {
     System.err.print("Enter a district ID to eliminate  => ");
     int choice = StdIn.readInt();
     StdIn.readLine();
@@ -142,8 +143,7 @@ public class Driver {
     printTree(studentHungerGames.getRoot());
   }
 
-  private static DuelPair testSelectDuelers(HungerGames studentHungerGames,
-      String input) {
+  private static DuelPair testSelectDuelers(HungerGames studentHungerGames, String input) {
     StdRandom.setSeed(2023);
     DuelPair people = studentHungerGames.selectDuelers();
     Person one = people.getPerson1();
@@ -165,8 +165,7 @@ public class Driver {
     return people;
   }
 
-  private static void testEliminateDueler(HungerGames studentHungerGames,
-      DuelPair pair) {
+  private static void testEliminateDueler(HungerGames studentHungerGames, DuelPair pair) {
     if (pair == null) {
       StdOut.println("Pair is empty, test selectDuelers first!");
       return;
@@ -181,26 +180,27 @@ public class Driver {
     printTree(root, "", false, true);
   }
 
-  private static void printTree(TreeNode n, String indent, boolean isRight,
-      boolean isRoot) {
+  private static void printTree(TreeNode n, String indent, boolean isRight, boolean isRoot) {
     StdOut.print(indent);
     // Print out either a right connection or a left connection
-    if (!isRoot)
-      StdOut.print(isRight ? "|-R- " : "|-L- ");
-    else
-      StdOut.print("+--- ");
+    if (!isRoot) StdOut.print(isRight ? "|-R- " : "|-L- ");
+    else StdOut.print("+--- ");
     if (n == null) {
       StdOut.println("null");
       return;
     }
     if (n.getDistrict() != null)
-      StdOut.print("[" + n.getDistrict().getDistrictID() + " -> "
-          + n.getDistrict().getOddPopulation().size() + ", "
-          + n.getDistrict().getEvenPopulation().size() + "]");
+      StdOut.print(
+          "["
+              + n.getDistrict().getDistrictID()
+              + " -> "
+              + n.getDistrict().getOddPopulation().size()
+              + ", "
+              + n.getDistrict().getEvenPopulation().size()
+              + "]");
     StdOut.println();
     // If no more children we're done
-    if (n.getLeft() == null && n.getRight() == null)
-      return;
+    if (n.getLeft() == null && n.getRight() == null) return;
     // Add to the indent based on whether we're branching left or right
     indent += isRight ? "|    " : "     ";
     printTree(n.getLeft(), indent, false, false);

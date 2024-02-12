@@ -2,8 +2,8 @@ package games;
 
 /**
  * This class represents a BST Node in the Hunger Games
- * <p>
- * Contains a District as its data
+ *
+ * <p>Contains a District as its data
  *
  * @author Pranay Roni
  */
@@ -16,8 +16,8 @@ public class TreeNode {
    * Creates TreeNode with a district and left and right children.
    *
    * @param district of which this TreeNode should contain as its data
-   * @param left     will be this TreeNode's left child
-   * @param right    will be this TreeNode's right child
+   * @param left will be this TreeNode's left child
+   * @param right will be this TreeNode's right child
    */
   public TreeNode(District district, TreeNode left, TreeNode right) {
     this.district = district;
@@ -29,6 +29,7 @@ public class TreeNode {
   public TreeNode() {
     this(null, null, null);
   }
+
   // Getters and setters
 
   /**

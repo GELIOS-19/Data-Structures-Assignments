@@ -8,10 +8,8 @@ package restaurant;
  */
 public class TransactionData {
   private String type; // one of three: order, donation, restock
-  private String item; // either food order or ingredient donation request/
-                       // restock
-  private int amount; // integer amount of food being
-                      // purchased/donated/restocked
+  private String item; // either food order or ingredient donation request/restock
+  private int amount; // integer amount of food being purchased/donated/restocked
   private double profit; // profit? (+/-)
   private boolean success; // true if successfull transaction, false otherwise
 
@@ -25,8 +23,7 @@ public class TransactionData {
   }
 
   // Constructor
-  public TransactionData(String type, String item, int amount, double profit,
-      boolean success) {
+  public TransactionData(String type, String item, int amount, double profit, boolean success) {
     this.type = type;
     this.item = item;
     this.amount = amount;

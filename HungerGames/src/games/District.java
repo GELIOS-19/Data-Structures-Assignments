@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 /**
  * This class implements the Districts in Hunger Games.
- * <p>
- * Contains two ArrayLists of Odd Population and Even Population based on birth
- * date.
- * <p>
- * District ID must be defined at initialization.
+ *
+ * <p>Contains two ArrayLists of Odd Population and Even Population based on birth date.
+ *
+ * <p>District ID must be defined at initialization.
  *
  * @author Pranay Roni
  */
@@ -106,7 +105,12 @@ public class District {
    * @return oddPopulation ArrayList evenPopulation ArrayList as String
    */
   public String toString() {
-    return "ID: " + districtID + ", Odd Population: " + oddPopulation + ", "
-        + "Even Population: " + evenPopulation;
+    return "ID: "
+        + districtID
+        + ", Odd Population: "
+        + oddPopulation
+        + ", "
+        + "Even Population: "
+        + evenPopulation;
   }
 }

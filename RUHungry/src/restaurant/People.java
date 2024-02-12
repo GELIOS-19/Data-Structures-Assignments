@@ -1,11 +1,10 @@
 package restaurant;
 
 /**
- * PICK UP LINE (FOR FUN): *people aren’t objects, but if I wrap myself around
- * you, it gives me a method to my madness*
- * <p>
- * *********** This file contains a party's information which is inputed into a
- * queue.
+ * PICK UP LINE (FOR FUN): *people aren’t objects, but if I wrap myself around you, it gives me a
+ * method to my madness*
+ *
+ * <p>*********** This file contains a party's information which is inputed into a queue.
  *
  * @author Mary Buist
  * @author Kushi Sharma

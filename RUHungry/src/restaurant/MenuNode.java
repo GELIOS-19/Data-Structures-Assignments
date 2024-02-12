@@ -1,8 +1,7 @@
 package restaurant;
 
 /**
- * This file is the "node" in the linkedlist at each index in the Menu
- * "hashtable"
+ * This file is the "node" in the linkedlist at each index in the Menu "hashtable"
  *
  * @author Kushi Sharma
  * @author Mary Buist

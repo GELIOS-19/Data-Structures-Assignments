@@ -9,8 +9,8 @@ package restaurant;
 public class Dish {
   private String category; // name of the category
   private String dishName; // name of the dish
-  private int[] stockID; // 1-D int array where each index is the ID of the
-                         // ingredient needed for the dish
+  private int[]
+      stockID; // 1-D int array where each index is the ID of the ingredient needed for the dish
   private double price; // price of the dish
   private double profit; // profit made when selling a dish
 

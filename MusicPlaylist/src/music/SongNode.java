@@ -1,8 +1,8 @@
 package music;
 
 /**
- * This class represents a song node, with a song object representing the song
- * and a reference to the song next in the playlist.
+ * This class represents a song node, with a song object representing the song and a reference to
+ * the song next in the playlist.
  *
  * @author Jeremy Hui
  * @author Vian Miranda

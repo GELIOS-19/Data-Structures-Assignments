@@ -1,8 +1,7 @@
 package music;
 
 /**
- * This class represents a song, with a string for the song name, artist, album,
- * and year
+ * This class represents a song, with a string for the song name, artist, album, and year
  *
  * @author Jeremy Hui
  * @author Vian Miranda
@@ -18,8 +17,7 @@ public class Song {
   /*
    * Constructor
    */
-  public Song(String songName, String artist, int year, int popularity,
-      String link) {
+  public Song(String songName, String artist, int year, int popularity, String link) {
     this.songName = songName;
     this.artist = artist;
     this.year = year;
@@ -75,27 +73,18 @@ public class Song {
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
+    if (this == obj) return true;
+    if (obj == null) return false;
+    if (getClass() != obj.getClass()) return false;
     Song other = (Song) obj;
     if (songName == null) {
-      if (other.songName != null)
-        return false;
-    } else if (!songName.equals(other.songName))
-      return false;
+      if (other.songName != null) return false;
+    } else if (!songName.equals(other.songName)) return false;
     if (artist == null) {
-      if (other.artist != null)
-        return false;
-    } else if (!artist.equals(other.artist))
-      return false;
-    if (year != other.year)
-      return false;
-    if (popularity != other.popularity)
-      return false;
+      if (other.artist != null) return false;
+    } else if (!artist.equals(other.artist)) return false;
+    if (year != other.year) return false;
+    if (popularity != other.popularity) return false;
     return true;
   }
 

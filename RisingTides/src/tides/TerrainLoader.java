@@ -12,8 +12,7 @@ import java.util.*;
  * @author Original Creator Keith Scharz (NIFTY STANFORD)
  */
 public class TerrainLoader {
-  private TerrainLoader() {
-  }
+  private TerrainLoader() {}
 
   /* Interface for receiving progress updates. */
   public interface DownloadNotifier {
@@ -24,16 +23,15 @@ public class TerrainLoader {
    * Progress monitor channel type. Adapted from this Stack Overflow post:
    * https://stackoverflow.com/a/59667209
    */
-  private static final class ReadableConsumerByteChannel
-      implements ReadableByteChannel {
+  private static final class ReadableConsumerByteChannel implements ReadableByteChannel {
     private final ReadableByteChannel rbc;
     private final DownloadNotifier onRead;
     private int bytesRead;
     private final int totalBytes;
     private int lastPercent = -1;
 
-    public ReadableConsumerByteChannel(ReadableByteChannel rbc, int totalBytes,
-        DownloadNotifier onBytesRead) {
+    public ReadableConsumerByteChannel(
+        ReadableByteChannel rbc, int totalBytes, DownloadNotifier onBytesRead) {
       this.rbc = rbc;
       this.onRead = onBytesRead;
       this.totalBytes = totalBytes == 0 ? 1 : totalBytes;
@@ -69,8 +67,8 @@ public class TerrainLoader {
     }
   }
 
-  public static Terrain loadTerrain(File filename,
-      DownloadNotifier downloadNotifier) throws IOException {
+  public static Terrain loadTerrain(File filename, DownloadNotifier downloadNotifier)
+      throws IOException {
     try (var br = new FileInputStream(filename)) {
       return loadTerrain(br, downloadNotifier);
     }
@@ -81,25 +79,22 @@ public class TerrainLoader {
    * get enough data.
    */
   private static String nextLine(Scanner s) throws IOException {
-    if (!s.hasNextLine())
-      throw new IOException("Unexpected end of file.");
+    if (!s.hasNextLine()) throw new IOException("Unexpected end of file.");
     return s.nextLine();
   }
 
   private static int nextInt(Scanner s) throws IOException {
-    if (!s.hasNextInt())
-      throw new IOException("Malformed file.");
+    if (!s.hasNextInt()) throw new IOException("Malformed file.");
     return s.nextInt();
   }
 
   private static double nextDouble(Scanner s) throws IOException {
-    if (!s.hasNextDouble())
-      throw new IOException("Malformed file.");
+    if (!s.hasNextDouble()) throw new IOException("Malformed file.");
     return s.nextDouble();
   }
 
-  private static Terrain loadTerrain(InputStream stream,
-      DownloadNotifier downloadNotifier) throws IOException {
+  private static Terrain loadTerrain(InputStream stream, DownloadNotifier downloadNotifier)
+      throws IOException {
     try (var input = new Scanner(stream)) {
       /* Determine whether this is a local file or whether it's remote. */
       var source = nextLine(input);
@@ -131,8 +126,7 @@ public class TerrainLoader {
   }
 
   /* Sees whether the given key file is the key for the given URL. */
-  private static boolean isKeyFor(File keyFile, String source)
-      throws IOException {
+  private static boolean isKeyFor(File keyFile, String source) throws IOException {
     /* Check if the file contents are the URL. */
     BufferedReader url = new BufferedReader(new FileReader(keyFile));
     boolean key = url.readLine().equals(source);
@@ -141,8 +135,8 @@ public class TerrainLoader {
   }
 
   /* Loads the terrain from the given URL. */
-  private static Terrain loadWebTerrain(String source,
-      DownloadNotifier downloadNotifier) throws IOException {
+  private static Terrain loadWebTerrain(String source, DownloadNotifier downloadNotifier)
+      throws IOException {
     /* Key file: Name is hash, contents are URL. */
     File keyFile = new File("DownloadCache/" + source.hashCode() + ".key");
     /* Data file: Name is hash, contents are actual contents. */
@@ -155,10 +149,9 @@ public class TerrainLoader {
        * filechannels-track- progress
        */
       URLConnection connection = new URL(source).openConnection();
-      ReadableByteChannel rbc = Channels
-          .newChannel(new URL(source).openStream());
-      ReadableConsumerByteChannel rcbc = new ReadableConsumerByteChannel(rbc,
-          connection.getContentLength(), downloadNotifier);
+      ReadableByteChannel rbc = Channels.newChannel(new URL(source).openStream());
+      ReadableConsumerByteChannel rcbc =
+          new ReadableConsumerByteChannel(rbc, connection.getContentLength(), downloadNotifier);
       FileOutputStream fos = new FileOutputStream(dataFile);
       fos.getChannel().transferFrom(rcbc, 0, Long.MAX_VALUE);
       fos.close();

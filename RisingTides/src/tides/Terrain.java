@@ -3,8 +3,7 @@ package tides;
 import java.util.*;
 
 /**
- * DO NOT EDIT! This class contains the heights of the terrain and water
- * sources.
+ * DO NOT EDIT! This class contains the heights of the terrain and water sources.
  *
  * @author Original Creator Keith Scharz (NIFTY STANFORD)
  */

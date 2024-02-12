@@ -1,8 +1,8 @@
 package games;
 
 /**
- * This class defines a Person in the Hunger Games Contains birth month, first
- * name, last name, id, Tessera eligibility, and effectiveness value.
+ * This class defines a Person in the Hunger Games Contains birth month, first name, last name, id,
+ * Tessera eligibility, and effectiveness value.
  *
  * @author Pranay Roni
  */
@@ -13,28 +13,28 @@ public class Person implements Comparable<Person> {
   private int age;
   private int districtID; // the district the person belongs to
   private boolean tessera; // if true this person has volunteered to participate
-                           // in the games
+  // in the games
   private int effectiveness; // the higher the value the higher the chances of
-                             // winning a duel
+
+  // winning a duel
 
   /**
    * Default Constructor for creating a Person.
    *
    * @param birthMonth is defined to be as male or female.
-   * @throws IllegalArgumentException birthMonth is defined is a value that is
-   *                                    NOT 0 or 1
-   * @param firstName     String representing Person's First Name
-   * @param lastName      String representing Person's Last Name
-   * @param age           integer representing Person's age
-   * @param districtID    integer representing Person's corresponding district
-   * @param effectiveness integer representing Person's effectiveness when
-   *                        dueling
+   * @throws IllegalArgumentException birthMonth is defined is a value that is NOT 0 or 1
+   * @param firstName String representing Person's First Name
+   * @param lastName String representing Person's Last Name
+   * @param age integer representing Person's age
+   * @param districtID integer representing Person's corresponding district
+   * @param effectiveness integer representing Person's effectiveness when dueling
    */
-  public Person(int birthMonth, String firstName, String lastName, int age,
-      int districtID, int effectiveness) throws IllegalArgumentException {
+  public Person(
+      int birthMonth, String firstName, String lastName, int age, int districtID, int effectiveness)
+      throws IllegalArgumentException {
     if (birthMonth <= 0 || birthMonth > 12)
-      throw new IllegalArgumentException("Birth month must be a valid month. \n"
-          + "Got instead: " + birthMonth);
+      throw new IllegalArgumentException(
+          "Birth month must be a valid month. \n" + "Got instead: " + birthMonth);
     this.birthMonth = birthMonth;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -130,12 +130,12 @@ public class Person implements Comparable<Person> {
   }
 
   /**
-   * A scalar between 0 and 2.0 is applied on both Persons' EFFECTIVENESS,
-   * highest resulting rating will win the encounter.
+   * A scalar between 0 and 2.0 is applied on both Persons' EFFECTIVENESS, highest resulting rating
+   * will win the encounter.
    *
    * @param person2 will be compared to current Person for this encounter
-   * @return person such that person has the greater Effectiveness after luck is
-   *         applied than the other person i.e Winner of Fight
+   * @return person such that person has the greater Effectiveness after luck is applied than the
+   *     other person i.e Winner of Fight
    */
   public Person duel(Person person2) {
     double luckPerson1 = StdRandom.uniform(0, 2.0);
@@ -155,18 +155,17 @@ public class Person implements Comparable<Person> {
   }
 
   /**
-   * Allows for Person to be compared to with another Person by comparing
-   * districtID's and full names Useful for using Collections.sort on a list of
-   * this type.
+   * Allows for Person to be compared to with another Person by comparing districtID's and full
+   * names Useful for using Collections.sort on a list of this type.
    *
    * @param person2
-   * @return Integer value representing natural ordering of Person with Person
-   *         2.
+   * @return Integer value representing natural ordering of Person with Person 2.
    */
   public int compareTo(Person person2) {
     Integer person1ID = districtID;
     Integer person2ID = person2.getDistrictID();
-    return (person1ID.compareTo(person2ID) != 0 ? person1ID.compareTo(person2ID)
+    return (person1ID.compareTo(person2ID) != 0
+        ? person1ID.compareTo(person2ID)
         : toString().compareTo(person2.toString()));
   }
 }

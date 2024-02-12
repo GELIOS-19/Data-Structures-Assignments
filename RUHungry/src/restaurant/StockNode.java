@@ -1,11 +1,9 @@
 package restaurant;
 
 /**
- * PICK UP LINE (FOR FUN): *are you a hash table? cuz you’re the key that gives
- * value to my life*
- * <p>
- * ************ This file is the "node" in the linkedlist at each index in the
- * stock hashtable.
+ * PICK UP LINE (FOR FUN): *are you a hash table? cuz you’re the key that gives value to my life*
+ *
+ * <p>************ This file is the "node" in the linkedlist at each index in the stock hashtable.
  *
  * @author Kushi Sharma
  * @author Mary Buist
