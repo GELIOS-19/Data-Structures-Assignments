@@ -12,13 +12,12 @@ import java.util.*;
  */
 public class HungerGames {
   private ArrayList<District> districts; // all districts in Panem.
-  private TreeNode game; // root of the BST. The BST contains districts that are
-
-  // still in the game.
+  private TreeNode game; // root of the BST. The BST contains districts that are still in the game.
 
   /**
-   * ***** DO NOT REMOVE OR UPDATE this method ********* Default constructor, initializes a list of
-   * districts.
+   * ***** DO NOT REMOVE OR UPDATE this method *********
+   *
+   * <p>Default constructor, initializes a list of districts.
    */
   public HungerGames() {
     districts = new ArrayList<>();
@@ -27,8 +26,10 @@ public class HungerGames {
   }
 
   /**
-   * ***** DO NOT REMOVE OR UPDATE this method ********* Sets up Panem, the universe in which the
-   * Hunger Games takes place. Reads districts and people from the input file.
+   * ***** DO NOT REMOVE OR UPDATE this method *********
+   *
+   * <p>Sets up Panem, the universe in which the Hunger Games takes place. Reads districts and
+   * people from the input file.
    *
    * @param filename will be provided by client to read from using StdIn
    */
