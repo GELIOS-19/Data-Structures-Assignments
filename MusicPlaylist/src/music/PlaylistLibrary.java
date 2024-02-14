@@ -300,8 +300,7 @@ public class PlaylistLibrary {
     Playlist highPlaylist = this.songLibrary.get(Integer.max(playlistIndex1, playlistIndex2));
     int lowPlaylistSize = lowPlaylist.getSize();
     int highPlaylistSize = highPlaylist.getSize();
-    // if both playlists are empty, just remove the high and keep
-    // the low
+    // if both playlists are empty, just remove the high and keep the low
     if (lowPlaylistSize == 0 && highPlaylistSize == 0) {
       // this is the high playlist index
       this.removePlaylist(Integer.max(playlistIndex1, playlistIndex2));
@@ -316,9 +315,7 @@ public class PlaylistLibrary {
               ? lowPlaylist
               : highPlaylist;
       SongNode targetHead = new SongNode(targetPlaylist.getLast().getNext().getSong(), null);
-      // Now add targetHead at the end of the merged playlist
-      // (last node
-      // is mergedLast)
+      // Now add targetHead at the end of the merged playlist (last node is mergedLast)
       if (mergedLast == null) {
         mergedLast = targetHead;
         mergedLast.setNext(mergedLast);
